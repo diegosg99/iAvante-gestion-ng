@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
-import { ExcelComponent } from './excel/excel.component';
+import { UserComponent } from './views/user/user.component';
+import { UserService } from './shared/services/user.service';
+import { NavbarComponent } from './views/navbar/navbar.component';
+import { FooterComponent } from './views/footer/footer.component';
+import { ExcelComponent } from './views/excel/excel.component';
 import * as bootstrap from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -22,7 +23,7 @@ import * as bootstrap from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UserService,httpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
