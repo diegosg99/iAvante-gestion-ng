@@ -5,12 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { ExcelComponent } from './excel/excel.component';
+import * as bootstrap from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent,
+    ExcelComponent
   ],
   imports: [
     BrowserModule,

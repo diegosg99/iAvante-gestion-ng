@@ -1,0 +1,67 @@
+.header {
+    display: flex;
+    width: 100%;
+    box-shadow: 0 6px 4px -4px lightcyan;
+    justify-content: space-between;
+    height: 5em;
+    background-color: white;
+    border-bottom: 1px #595f6b;
+}
+body{
+    background-color: white;
+    color: #595f6b;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.logo{
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+    text-align: center;
+    color: #96a2b8;
+    font-family: 'Encode Sans Condensed', sans-serif;
+}
+
+.logo img {
+    padding: 1em;
+}
+
+.slogan span {
+    font-size: 24px;
+    font-weight: 300;
+    color: #00c4c1;
+    margin-bottom: 1rem;
+}
+.slogan text {
+    padding-top: 0.4em;
+}
+
+.slogan {
+    font-family: 'Encode Sans Condensed', sans-serif;
+    font-weight: 300;
+    color: #96a2b8;
+    width: 45%;
+    padding-left: 10%;
+    font-size: 24px;
+    margin: 0 auto;
+    padding-top: 0.6em;
+    display: flex;
+    justify-content: space-evenly;
+}
+.div-formulario {
+    /*width: 80%;
+    margin-left: 10%;*/
+    padding: 1em;
+    border-left: 1px solid;
+    border-left-color: currentcolor;
+    border-left-color: lightgray;
+    border-right: 1px solid;
+    border-right-color: currentcolor;
+    border-left-color: currentcolor;
+    border-right-color: lightgray;
+}
+.div-formulario form,.section {
+ display: flex;
+ flex-direction: column;
+}

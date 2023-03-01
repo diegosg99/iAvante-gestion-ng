@@ -1,0 +1,59 @@
+<div id="adminPanel" class="adminPanel col-md-2">
+    <button type="button" (click)="openModal()" id="buttonModal" style="margin-top: 1.3em;" class="btn btn-light"><!-- data-bs-toggle="modal" data-bs-target="#importExcel" -->
+      Importar excel
+    </button>
+</div>
+
+<div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img src="assets/images/excel-icon.svg">
+          <h5 class="modal-title" id="exampleModalLabel" style="padding-top: 0.4em;padding-left: 0.6em;">Importar Excel</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Selecciona que vas a importar...</h6>
+          <div class="col-md-4"></div>
+          <div class="-col-md-4">
+            <select class="form-control" id="select-excel">
+              <option>...</option>
+              <option value="alumnos">Alumnos</option>
+              <option value="docentes">Docentes</option>
+              <option value="cursos">Cursos</option>
+            </select>
+          </div>
+          <div class="-col-md-4"></div>
+          <hr class="hr hr-blurry" />
+          <div class="conatiner mt-5">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <input class="form-control" type="file" id="inputExcel" accept=".xls,.xlsx"  >                      
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-light" id="convertButton">Convertir</button>
+                </div>
+                <div class="col-md-12">
+                    <pre id="jsondata"></pre>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div id="dinamic-table">
+
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+            
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeModal()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="importar()">Importar</button>
+        </div>
+      </div>
+    </div>
+  </div>

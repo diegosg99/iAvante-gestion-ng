@@ -1,0 +1,15 @@
+@media (max-width: 1096px) {
+    .slogan span{
+      display: none !important;
+    }
+}
+@media (max-width: 916px) {
+.slogan{
+    padding-left: 0px !important;
+    }
+}
+@media (max-width: 764px) {
+.slogan{
+    display: none !important;
+    }
+}
