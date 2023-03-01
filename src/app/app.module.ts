@@ -9,6 +9,7 @@ import { NavbarComponent } from './views/navbar/navbar.component';
 import { FooterComponent } from './views/footer/footer.component';
 import { ExcelComponent } from './views/excel/excel.component';
 import * as bootstrap from '@ng-bootstrap/ng-bootstrap';
+import { httpService } from './shared/services/httpService';
 
 
 @NgModule({

@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+// import { UserService } from 'src/app/shared/services/user.service';
+import { FormBuilder } from '@angular/forms';
+import { User,UserDto } from 'src/app/shared/models/user.model';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -6,25 +10,31 @@ import { Component } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 
-export class UserComponent {
+export class UserComponent implements OnInit{
 
-    constructor(view,service){
-        this.view = view;
-        this.service = service;
-        this.init();
-    }
+  public users: UserDto[];
+  public userForm;
 
-    init = () => {
-        this.view.bindSelectStudent(this.handlerPrintStudents);
-        this.view.bindSubmitForm(this.handlerForm);
+    constructor(
+      private userService: UserService,
+      private formBuilder:FormBuilder
+    ){
+        this.userService = userService;
+        this.users = userService.getStudentData(dni);
+        this.userForm = this.formBuilder.group({
+          
+        })
     }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
-    handlerPrintStudents = async (dni) => {
-        return await this.service.getStudentData(dni);
-    }
+    // handlerPrintStudents = async (dni) => {
+    //     return await this.service.getStudentData(dni);
+    // }
 
-    handlerForm = async (user) => {
-        this.service.postUser(user);
-    }
+    // handlerForm = async (user) => {
+    //     this.service.postUser(user);
+    // }
 
 }

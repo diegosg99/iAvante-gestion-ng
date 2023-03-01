@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-Injectable()
 import { User,UserDto } from "../models/user.model";
+import { httpService } from "./httpService";
 
+@Injectable()
 export class UserService {
 
     public users: UserDto[];
@@ -10,11 +11,11 @@ export class UserService {
     constructor (httpService:httpService,dni:string) {
         this.httpService = httpService;
         this.users = [];
-        this.createListUsers(dni);
+        //this.createListUsers(dni);
     }
 
     createListUsers = async (dni:string) => {
-        const users: UserDto[] = JSON.parse(await this.getStudentData(dni));
+        const users: UserDto[] = JSON.parse(await this.getStudentData(dni)) || [];
         this.users = users;
         return this.users;
     }

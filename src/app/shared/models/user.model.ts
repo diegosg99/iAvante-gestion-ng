@@ -4,7 +4,9 @@ export interface UserDto {
     name: string;
     surname: string;
     phone:number;
-    email:string
+    email:string;
+    details: string;
+
 }
   
 export class User {
@@ -14,6 +16,7 @@ public name: string;
 public surname: string;
 public phone: number;
 public email: string;
+public details: string;
 
 
     constructor({ dni,name,surname,phone,email }: UserDto = {
@@ -23,6 +26,7 @@ public email: string;
         surname: "",
         phone: 0,
         email: "",
+        details: "",
         }
     ) {
         this.id = this.uuidv4();
@@ -31,6 +35,7 @@ public email: string;
         this.surname = surname;
         this.phone = phone;
         this.email = email;
+        this.details = email;
     }
 
 uuidv4(): string {
