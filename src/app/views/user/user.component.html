@@ -64,3 +64,16 @@
         </div>
       </form>
   </div>
+
+  <table>
+    <thead>
+        <th>Estudiante</th>
+        <th>dni</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{user.name}}</td>
+          <td>{{user.dni}}</td>
+        </tr>
+    </tbody>
+</table>

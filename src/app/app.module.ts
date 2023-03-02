@@ -9,8 +9,8 @@ import { NavbarComponent } from './views/navbar/navbar.component';
 import { FooterComponent } from './views/footer/footer.component';
 import { ExcelComponent } from './views/excel/excel.component';
 import * as bootstrap from '@ng-bootstrap/ng-bootstrap';
-import { httpService } from './shared/services/httpService';
-
+import { HttpClientModule } from '@angular/common/http';
+import { CoursesComponent } from './views/courses/courses.component'
 
 @NgModule({
   declarations: [
@@ -18,13 +18,15 @@ import { httpService } from './shared/services/httpService';
     UserComponent,
     NavbarComponent,
     FooterComponent,
-    ExcelComponent
+    ExcelComponent,
+    CoursesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [UserService,httpService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
