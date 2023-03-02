@@ -15,7 +15,7 @@ export class CoursesComponent {
 
   constructor(private route:ActivatedRoute,private courseService:CourseService){
     this.courseService = courseService;
-    this.courses = this.getCourses();
+    this.courses = this.courseService.getCourses();
   }
 
 //-----------Ruta--------------------
@@ -25,12 +25,14 @@ export class CoursesComponent {
     map((params: ParamMap) => params.get('course'))
   );
 
-  getCourses() {
-    this.courseService.getCourses();
+  ngOnInit() {
+    this.courses.subscribe((data: any)=> {
+
+      this.courses = data.rows;
+    }); 
   }
 
-  ngOnInit() {
-    this.courses = fetch('')
-    return 
+  showCourseUsers(e:Event) {
+
   }
 }

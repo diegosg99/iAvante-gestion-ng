@@ -1,13 +1,7 @@
 <!-- Modal -->
 
 <div class="div-formulario" id="containerStudentForm">
-    <div class="section">
-        <h4>Selecciona el curso:</h4>
-        <div class="form-group">
-                          <select class="form-control" id="select-curso">
-                </select>
-          </div>
-    </div>
+    <app-courses></app-courses>
     <div class="section">
         <h4>Selecciona un alumno:</h4>
         <div class="form-group">
@@ -21,7 +15,7 @@
     </div>
     <hr class="hr hr-blurry" />
     <!-- [formGroup]="userForm" (ngSubmit)="addUser(userForm.value)" -->
-    <form id="studentForm" [formGroup]="userForm">
+    <form id="studentForm" [formGroup]="userForm" (ngSubmit)="updateUser()">
     <h4>Rellene los siguientes datos</h4>
         <div class="form-group">
             <label for="userDni">DNI:</label>
@@ -63,7 +57,7 @@
         <div class="row">
           <div class="col-md-3"></div>
           <!-- <a class="btn btn-primary" class="col-md-6 btn btn-primary" href="#documentation">Siguiente</a> -->
-          <button type="submit" class="col-md-6 btn btn-primary" id="submitForm" (click)="saveUser()">Siguiente</button>
+          <button type="submit" class="col-md-6 btn btn-primary" id="submitForm" href="#documentation">Siguiente</button>
         </div>
       </form>
   </div>

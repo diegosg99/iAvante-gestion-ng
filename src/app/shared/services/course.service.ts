@@ -41,7 +41,7 @@ export class CourseService {
     }
 
     getCourses(): Observable < Course[] > {
-      return this.httpService.get < Course[] > ('http://127.0.0.1:3003/courses/').pipe(catchError(this.errorHandler));
+      return this.httpService.get < Course[] > (this.apiURL + 'courses/').pipe(catchError(this.errorHandler));
     }
     addCourse(course: Course): Observable < Course > {
         return this.httpService.post < Course > (this.apiURL + 'course/', JSON.stringify(course), this.httpOptions).pipe(catchError(this.errorHandler))

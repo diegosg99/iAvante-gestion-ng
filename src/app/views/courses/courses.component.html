@@ -1,12 +1,12 @@
-<table>
-    <thead>
-        <th>Curso</th>
-        <th>Código</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let course of courses">
-          <td>{{course.name}}</td>
-          <td>{{course.code}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="section">
+    <h4>Selecciona el curso:</h4>
+    <div class="form-group">
+            <select class="form-control" id="select-curso" (change)="showCourseUsers($event)">
+                  <option>Seleccionar curso...</option>
+                  <option *ngFor="let course of courses"
+                         [value]="course.code">
+                        {{course.name}}
+                  </option>
+            </select>
+      </div>
+</div>

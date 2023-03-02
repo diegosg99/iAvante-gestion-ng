@@ -8,7 +8,7 @@ import { map,catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
-
+    
     public users:any;
     private apiURL:string = 'http://127.0.0.1:3003/';
     httpOptions = {
@@ -19,23 +19,10 @@ export class UserService {
 
     constructor (private httpService:HttpClient) {}
 
-    errorHandler(error: {
-      error: {
-          message: string;
-      };status: any;message: any;
-  }) {
-      let errorMessage = '';
-      if (error.error instanceof ErrorEvent) {
-          errorMessage = error.error.message;
-      } else {
-          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-      }
-      return throwError(errorMessage);
-  }
-
     ngOnInit() {
         this.users = this.getUsers();
-        this.users.subscribe((user:any) => console.log(user));    }
+        this.users.subscribe((user:any) => console.log(user));    
+    }
 
     getUsers(): Observable < User[] > {
       return this.httpService.get < User[] > (this.apiURL + 'students/').pipe(catchError(this.errorHandler));
@@ -47,18 +34,21 @@ export class UserService {
         return this.httpService.post < User > (this.apiURL + 'student/', JSON.stringify(user), this.httpOptions).pipe(catchError(this.errorHandler))
     }
 
+    updateUser(value: any) {
+      throw new Error('Method not implemented.');
+    }
 
-
-
-    // getUsers() {
-    //     return fetch('127.0.0.1:3003/students',
-    //     {
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       method: 'POST',
-    //       mode: 'no-cors'
-    //     }).then(res=>console.log(res));
-    //     //return this.httpService.get('/api/user').then(res=>map((res: Response) => res.json()));
-    //   }
+    errorHandler(error: {
+      error: {
+          message: string;
+      };status: any;message: any;
+    }) {
+      let errorMessage = '';
+      if (error.error instanceof ErrorEvent) {
+          errorMessage = error.error.message;
+      } else {
+          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      }
+      return throwError(errorMessage);
+  }
 } 

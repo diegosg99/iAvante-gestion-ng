@@ -31,19 +31,16 @@ export class UserComponent implements OnInit {
         rights: new FormControl(),
       });
       
-        this.users = this.userService.getUsers();
-        //this.userForm = this.formBuilder.group({})
+      this.users = this.userService.getUsers();
     }
   ngOnInit(): void {
     this.users.subscribe((data: any)=> {
 
-      //let users:Array<UserDto>;
-      //users = data.rows;
       this.users = data.rows;
     });
   }
-  saveUser () {
-    console.warn(this.userForm.value);
+  updateUser () {
+    this.userService.updateUser(this.userForm.value);
   }
 
   showUser(e: any) {
