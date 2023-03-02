@@ -12,6 +12,7 @@ import * as bootstrap from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { CoursesComponent } from './views/courses/courses.component'
 import { RouterModule, Routes, UrlSegment } from '@angular/router';
+import { CourseService } from './shared/services/course.service';
 
 const routes:Routes=[
 
@@ -57,7 +58,7 @@ const routes:Routes=[
       }
     ])
   ],
-  providers: [UserService],
+  providers: [UserService,CourseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

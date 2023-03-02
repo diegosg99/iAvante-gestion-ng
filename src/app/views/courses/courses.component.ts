@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { CourseDto } from 'src/app/shared/models/course.model';
+import { CourseService } from 'src/app/shared/services/course.service';
 
 @Component({
   selector: 'app-courses',
@@ -12,23 +13,20 @@ export class CoursesComponent {
 
   public courses:any;
 
-  constructor(private route:ActivatedRoute){
+  constructor(private route:ActivatedRoute,private courseService:CourseService){
+    this.courseService = courseService;
     this.courses = this.getCourses();
   }
+
+//-----------Ruta--------------------
+
   course$ = this.route.paramMap
   .pipe(
     map((params: ParamMap) => params.get('course'))
   );
 
   getCourses() {
-    return fetch('http://127.0.0.1:3003/courses',
-    {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      mode: 'no-cors'
-    }).then(res=>res.json());
+    this.courseService.getCourses();
   }
 
   ngOnInit() {

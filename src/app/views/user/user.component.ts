@@ -24,9 +24,21 @@ export class UserComponent implements OnInit{
         })
     }
   ngOnInit(): void {
-    console.log(this.users);
+    this.users.subscribe((data: any)=> {
+
+      //let users:Array<UserDto>;
+      //users = data.rows;
+      this.users = data.rows;
+      console.log(this.users);
+    });
   }
   addUser (user:UserDto) {
 
+  }
+
+  showUser(e: any) {
+    if (!e.target.value){return};
+    let dni:string|null = e.target.value? e.target.value:null;
+    console.log(dni);
   }
 }

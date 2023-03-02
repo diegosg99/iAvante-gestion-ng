@@ -11,9 +11,11 @@
     <div class="section">
         <h4>Selecciona un alumno:</h4>
         <div class="form-group">
-                <select class="form-control" id="select-alumno">
+                <select class="form-control" id="select-alumno" (change)="showUser($event)">
                     <option>Seleccionar alumno...</option>
-                    <option *ngFor="let user of users"></option>
+                    <option *ngFor="let user of users"
+                    [value]="user.dni">
+                  {{user.name + " " + user.surname}}</option>
                 </select>
           </div>
     </div>
@@ -65,16 +67,3 @@
         </div>
       </form>
   </div>
-
-  <!-- <table>
-    <thead>
-        <th>Estudiante</th>
-        <th>dni</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{user.name}}</td>
-          <td>{{user.dni}}</td>
-        </tr>
-    </tbody>
-</table> -->
