@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoursesComponent } from './views/courses/courses.component'
 import { RouterModule, Routes, UrlSegment } from '@angular/router';
 import { CourseService } from './shared/services/course.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes:Routes=[
 
@@ -40,6 +41,7 @@ const routes:Routes=[
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         matcher: (url) => {

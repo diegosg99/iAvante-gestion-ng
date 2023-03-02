@@ -40,6 +40,9 @@ export class UserService {
     getUsers(): Observable < User[] > {
       return this.httpService.get < User[] > (this.apiURL + 'students/').pipe(catchError(this.errorHandler));
     }
+    getUser(dni:any): Observable < User[] > {
+      return this.httpService.get < User[] > (this.apiURL + 'student/data/'+dni).pipe(catchError(this.errorHandler));
+    }
     addUser(user: User): Observable < User > {
         return this.httpService.post < User > (this.apiURL + 'student/', JSON.stringify(user), this.httpOptions).pipe(catchError(this.errorHandler))
     }
