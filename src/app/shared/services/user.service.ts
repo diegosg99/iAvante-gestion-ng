@@ -21,7 +21,14 @@ export class UserService {
 
     getUsers() {
 
-        return fetch('http://127.0.0.1:3003/students').then(res=>res.json());
+        return fetch('127.0.0.1:3003/students',
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          mode: 'no-cors'
+        }).then(res=>console.log(res));
         //return this.httpService.get('/api/user').then(res=>map((res: Response) => res.json()));
       }
 

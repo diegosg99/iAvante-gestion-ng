@@ -18,7 +18,8 @@
           </div>
     </div>
     <hr class="hr hr-blurry" />
-    <form [formGroup]="userForm" (ngSubmit)="addUser(userForm.value)" id="studentForm">
+    <!-- [formGroup]="userForm" (ngSubmit)="addUser(userForm.value)" -->
+    <form id="studentForm">
     <h4>Rellene los siguientes datos</h4>
         <div class="form-group">
             <label for="userDni">DNI:</label>
@@ -65,7 +66,7 @@
       </form>
   </div>
 
-  <table>
+  <!-- <table>
     <thead>
         <th>Estudiante</th>
         <th>dni</th>
@@ -76,4 +77,4 @@
           <td>{{user.dni}}</td>
         </tr>
     </tbody>
-</table>
+</table> -->

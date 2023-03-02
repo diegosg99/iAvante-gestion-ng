@@ -1,1 +1,12 @@
-<p>courses works!</p>
+<table>
+    <thead>
+        <th>Curso</th>
+        <th>Código</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let course of courses">
+          <td>{{course.name}}</td>
+          <td>{{course.code}}</td>
+        </tr>
+    </tbody>
+</table>
