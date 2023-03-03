@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { CourseDto } from 'src/app/shared/models/course.model';
 import { CourseService } from 'src/app/shared/services/course.service';
+import { UserComponent } from '../user/user.component';
 
 @Component({
   selector: 'app-courses',
@@ -32,7 +33,10 @@ export class CoursesComponent {
     }); 
   }
 
-  showCourseUsers(e:Event) {
+  showCourseUsers(e:Event|any) {
+    this.courseService.getCourseUsers(e.target.value).subscribe((data: any)=> {
 
+      //UserComponent. = data.rows;
+    });
   }
 }

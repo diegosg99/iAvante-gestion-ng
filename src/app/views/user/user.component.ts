@@ -14,7 +14,7 @@ export class UserComponent implements OnInit {
 
   public users:any;
   
-   public userForm: FormGroup;
+  public userForm: FormGroup;
 
     constructor(
       private userService: UserService,
@@ -32,14 +32,14 @@ export class UserComponent implements OnInit {
       });
       
       this.users = this.userService.getUsers();
-    }
+  }
   ngOnInit(): void {
     this.users.subscribe((data: any)=> {
 
       this.users = data.rows;
     });
   }
-  updateUser () {
+  updateUser () { // TODO
     this.userService.updateUser(this.userForm.value);
   }
 

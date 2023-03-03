@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Course,CourseDto } from "../models/course.model";
+import { User,UserDto } from "../models/user.model";
 import { HttpClient,HttpResponse,HttpHeaders } from "@angular/common/http";
 import { Observable,throwError,from } from "rxjs";
 import { map,catchError } from 'rxjs/operators';
@@ -43,6 +44,11 @@ export class CourseService {
     getCourses(): Observable < Course[] > {
       return this.httpService.get < Course[] > (this.apiURL + 'courses/').pipe(catchError(this.errorHandler));
     }
+
+    getCourseUsers(code:string): Observable < User[] > {
+      return this.httpService.get < User[] > (this.apiURL + 'students/course/'+code).pipe(catchError(this.errorHandler));
+    }
+
     addCourse(course: Course): Observable < Course > {
         return this.httpService.post < Course > (this.apiURL + 'course/', JSON.stringify(course), this.httpOptions).pipe(catchError(this.errorHandler))
     }
