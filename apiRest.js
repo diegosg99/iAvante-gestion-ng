@@ -1,0 +1,110 @@
+const express = require("express");
+const bodyParser = require('body-parser');
+const cors = require("cors");
+const mysql = require('mysql');
+
+//const moment = require('moment');
+//const jwt = require("jsonwebtoken");
+
+const connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '',
+  database : 'asistencia'
+});
+
+connection.connect();
+
+const app = express();
+
+app.use(cors());
+app.use(bodyParser.json({limit: '50mb'}));
+
+app.get('/courses/name',(req,res) => {
+    try{
+        let sql = `SELECT code,name FROM cursos;`;
+        connection.query(sql, function(err, rows, fields) {
+            if (err) throw err;
+            res.status(200).send({rows});
+            });
+    }catch(error){
+        res.status(400).send({msg:"Error"});
+    }
+})
+
+app.get('/students/course/:id',(req,res) => {
+  try{
+      let data = req.params.id;
+      let sql = `SELECT dni,name,surname FROM alumnos WHERE course = '`+data+`';`;
+      connection.query(sql, function(err, rows, fields) {
+          if (err) throw err;
+          res.status(200).send({rows});
+          });
+  }catch(error){
+      res.status(400).send({msg:"Error"});
+  }
+})
+
+app.get('/students',(req,res) => {
+  try{
+      let sql = `SELECT * FROM alumnos;`;
+      connection.query(sql, function(err, rows, fields) {
+          if (err) throw err;
+          res.status(200).send({rows});
+          });
+  }catch(error){
+      res.status(400).send({msg:"Error"});
+  }
+})
+
+app.get('/student/data/:id',(req,res) => {
+  try{
+      let data = req.params.id;
+      let sql = `SELECT * FROM alumnos WHERE dni = '`+data+`';`;
+      connection.query(sql, function(err, rows, fields) {
+          if (err) throw err;
+          res.status(200).send({rows});
+          });
+  }catch(error){
+      res.status(400).send({msg:"Error"});
+  }
+})
+
+app.get('/courses',(req,res) => {
+  try{
+      let sql = `SELECT * FROM cursos;`;
+      connection.query(sql, function(err, rows, fields) {
+          if (err) throw err;
+          res.status(200).send({rows});
+          });
+  }catch(error){
+      res.status(400).send({msg:"Error"});
+  }
+})
+
+app.put('/student/update',(req,res) => {
+  try{
+    let data = req.body;
+    data = JSON.parse(data);
+    let sql = `UPDATE alumnos 
+                  SET dni='${data.dni}',
+                  name='${data.name}',
+                  surname='${data.surname}',
+                  email='${data.email}',
+                  phone='${data.phone}',
+                  details='${data.details}',
+                  rights='${data.rights = true ? 1 : 0}'
+                  WHERE dni = '${data.dni}';`;
+
+    connection.query(sql, function(err, rows, fields) {
+        if (err) throw err;
+        res.status(200).send("exito");
+        });
+  }catch(error) {
+    res.status(400).send(req);
+  }
+})
+
+app.listen(3003, () =>
+  console.log(`¡Aplicación escuchando en el puerto 3003!`),
+);

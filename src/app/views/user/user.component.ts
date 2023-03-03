@@ -35,7 +35,6 @@ export class UserComponent implements OnInit {
 
   }
   ngOnInit(): void {
-
     this.courses.subscribe((data: any)=> {
       this.courses = data.rows;
     }); 
