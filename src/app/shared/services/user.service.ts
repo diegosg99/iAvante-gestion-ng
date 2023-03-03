@@ -1,29 +1,54 @@
 import { Injectable } from "@angular/core";
-Injectable()
 import { User,UserDto } from "../models/user.model";
+import { HttpClient,HttpResponse,HttpHeaders } from "@angular/common/http";
+import { Observable,throwError,from } from "rxjs";
+import { map,catchError } from 'rxjs/operators';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
-
-    public users: UserDto[];
-    public httpService:httpService;
-
-    constructor (httpService:httpService,dni:string) {
-        this.httpService = httpService;
-        this.users = [];
-        this.createListUsers(dni);
+    
+    public users:any;
+    private apiURL:string = 'http://127.0.0.1:3003/';
+    httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
     }
 
-    createListUsers = async (dni:string) => {
-        const users: UserDto[] = JSON.parse(await this.getStudentData(dni));
-        this.users = users;
-        return this.users;
+    constructor (private httpService:HttpClient) {}
+
+    ngOnInit() {
+        this.users = this.getUsers();
+        this.users.subscribe((user:any) => console.log(user));    
     }
 
-    getStudentData = (dni:string) => {
-        return this.httpService.get('http://127.0.0.1:3003/student/data/'+dni,null).then(JSON.parse);
+    getUsers(): Observable < User[] > {
+      return this.httpService.get < User[] > (this.apiURL + 'students/').pipe(catchError(this.errorHandler));
+    }
+    getUser(dni:any): Observable < User[] > {
+      return this.httpService.get < User[] > (this.apiURL + 'student/data/'+dni).pipe(catchError(this.errorHandler));
+    }
+    addUser(user: User): Observable < User > {
+        return this.httpService.post < User > (this.apiURL + 'student/', JSON.stringify(user), this.httpOptions).pipe(catchError(this.errorHandler))
     }
 
-    postUser = (data:any) => {
-        return this.httpService.post('http://127.0.0.1:3003/student/update/'+data.dni,data).then(JSON.parse);
+    updateUser(value: any) {
+      throw new Error('Method not implemented.');
     }
+
+    errorHandler(error: {
+      error: {
+          message: string;
+      };status: any;message: any;
+    }) {
+      let errorMessage = '';
+      if (error.error instanceof ErrorEvent) {
+          errorMessage = error.error.message;
+      } else {
+          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      }
+      return throwError(errorMessage);
+  }
 } 

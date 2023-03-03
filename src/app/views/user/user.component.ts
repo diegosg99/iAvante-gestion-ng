@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { User,UserDto } from 'src/app/shared/models/user.model';
+import { CourseService } from 'src/app/shared/services/course.service';
+import { UserService } from 'src/app/shared/services/user.service';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-user',
@@ -6,25 +11,62 @@ import { Component } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 
-export class UserComponent {
+export class UserComponent implements OnInit {
 
-    constructor(view,service){
-        this.view = view;
-        this.service = service;
-        this.init();
-    }
+  public users:any;
+  public courses:any;
+  
+  public userForm: FormGroup;
 
-    init = () => {
-        this.view.bindSelectStudent(this.handlerPrintStudents);
-        this.view.bindSubmitForm(this.handlerForm);
-    }
+    constructor(
+      private userService: UserService,
+      private courseService:CourseService
+    ){
+      this.courses = this.courseService.getCourses();
+      this.userForm = new FormGroup({
+        dni: new FormControl(),
+        name: new FormControl(),
+        surname: new FormControl(),
+        email: new FormControl(),
+        phone: new FormControl(),
+        details: new FormControl(),
+        rights: new FormControl(),
+      });
 
-    handlerPrintStudents = async (dni) => {
-        return await this.service.getStudentData(dni);
-    }
+  }
+  ngOnInit(): void {
 
-    handlerForm = async (user) => {
-        this.service.postUser(user);
-    }
+    this.courses.subscribe((data: any)=> {
+      this.courses = data.rows;
+    }); 
+  }
+  updateUser () { // TODO
+    this.userService.updateUser(this.userForm.value);
+  }
+  showUser(e: any) {
+    if (!e.target.value){return};
+    let dni:any = e.target.value? e.target.value:null;
 
+    let user = this.userService.getUser(dni);
+
+    user.subscribe((data:any) => {
+
+      let formUser = data.rows[0];
+      this.userForm.setValue({
+        'dni':dni,
+        'name':formUser.name,
+        'surname': formUser.surname,
+        'email': formUser.email,
+        'phone': formUser.phone,
+        'details': formUser.details,
+        'rights': formUser.rights
+      
+      }) ;
+    })
+  }
+  showCourseUsers(e:Event|any) {
+    this.courseService.getCourseUsers(e.target.value).subscribe((data: any)=> {
+        this.users = data.rows;
+    });
+  }
 }

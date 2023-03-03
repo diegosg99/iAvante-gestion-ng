@@ -9,7 +9,23 @@ import { NavbarComponent } from './views/navbar/navbar.component';
 import { FooterComponent } from './views/footer/footer.component';
 import { ExcelComponent } from './views/excel/excel.component';
 import * as bootstrap from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes, UrlSegment } from '@angular/router';
+import { CourseService } from './shared/services/course.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
+const routes:Routes=[
+
+  {
+    path:'',
+    pathMatch:'full',
+    redirectTo:'app-root'
+  },
+  {
+    path:'courses',
+    redirectTo:'app-courses'
+  }
+];
 
 @NgModule({
   declarations: [
@@ -21,9 +37,12 @@ import * as bootstrap from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot([])
   ],
-  providers: [UserService,httpService],
+  providers: [UserService,CourseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

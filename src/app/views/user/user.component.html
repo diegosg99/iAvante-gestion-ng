@@ -2,55 +2,64 @@
 
 <div class="div-formulario" id="containerStudentForm">
     <div class="section">
-        <h4>Selecciona el curso:</h4>
-        <div class="form-group">
-                          <select class="form-control" id="select-curso">
-                </select>
-          </div>
+      <h4>Selecciona el curso:</h4>
+      <div class="form-group">
+              <select class="form-control" id="select-curso" (change)="showCourseUsers($event)">
+                    <option>Seleccionar curso...</option>
+                    <option *ngFor="let course of courses"
+                          [value]="course.code">
+                          {{course.name}}
+                    </option>
+              </select>
+        </div>
     </div>
     <div class="section">
         <h4>Selecciona un alumno:</h4>
         <div class="form-group">
-                <select class="form-control" id="select-alumno">
+                <select class="form-control" id="select-alumno" (change)="showUser($event)">
                     <option>Seleccionar alumno...</option>
+                    <option *ngFor="let user of users"
+                    [value]="user.dni">
+                  {{user.name + " " + user.surname}}</option>
                 </select>
           </div>
     </div>
     <hr class="hr hr-blurry" />
-    <form id="studentForm">
+    <!-- [formGroup]="userForm" (ngSubmit)="addUser(userForm.value)" -->
+    <form id="studentForm" [formGroup]="userForm" (ngSubmit)="updateUser()">
     <h4>Rellene los siguientes datos</h4>
         <div class="form-group">
             <label for="userDni">DNI:</label>
-            <input type="text" class="form-control" id="userDni" placeholder="DNI" disabled>
+            <input type="text" class="form-control" id="userDni" placeholder="DNI" formControlName="dni">
             <small class="form-text text-muted">Nunca compartiremos tus datos.</small>
-          </div>
+        </div>
         <div class="form-group row">
           <div class="col">
             <label for="userName">Nombre:</label>
-            <input type="text" class="form-control" id="userName" placeholder="Nombre">
+            <input type="text" class="form-control" id="userName" placeholder="Nombre" formControlName="name">
           </div>
           <div class="col">
             <label for="userSurname">Apellidos:</label>
-            <input type="text" class="form-control" id="userSurname" placeholder="Apellidos">  
+            <input type="text" class="form-control" id="userSurname" placeholder="Apellidos" formControlName="surname">  
           </div>
         </div>
         <div class="form-group row">
           <div class="col-md-8">
             <label for="userEmail">Email:</label>
-            <input type="text" class="form-control" id="userEmail" placeholder="Email">
+            <input type="text" class="form-control" id="userEmail" placeholder="Email" formControlName="email">
           </div>
           <div class="col-md-4">
             <label for="userPhone">Teléfono:</label>
-            <input type="text" class="form-control" id="userPhone" placeholder="Teléfono">
+            <input type="text" class="form-control" id="userPhone" placeholder="Teléfono" formControlName="phone">
           </div>
           </div>
           <div class="form-group">
             <label for="userDetails">Observaciones:</label>
-            <input type="textarea" class="form-control" id="userDetails" placeholder="Observaciones">
+            <input type="textarea" class="form-control" id="userDetails" placeholder="Observaciones" formControlName="details">
           </div>
         <div class="form-group">
             <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="userRights">
+            <input type="checkbox" class="form-check-input" id="userRights" formControlName="rights">
             <label class="form-check-label" for="userRights">Acepto</label>
             <small class="form-text text-muted">Al hacer click aceptas que usemos tus <a class="link-primary" href="https://asesorias.com/empresas/wp-content/uploads/2020/01/Modelo-contrato-cesion-derechos-imagen.png">derechos</a> de imagen y gestionar tus datos.</small>
             </div>
@@ -58,8 +67,8 @@
         <br>
         <div class="row">
           <div class="col-md-3"></div>
-          <a class="btn btn-primary" class="col-md-6 btn btn-primary" href="#documentation">Siguiente</a>
-          <!-- <button type="submit" class="col-md-6 btn btn-primary" id="submitForm">Siguiente</button> -->
+          <!-- <a class="btn btn-primary" class="col-md-6 btn btn-primary" href="#documentation">Siguiente</a> -->
+          <button type="submit" class="col-md-6 btn btn-primary" id="submitForm" href="#documentation">Siguiente</button>
         </div>
       </form>
   </div>
