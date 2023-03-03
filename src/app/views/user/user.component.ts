@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { User,UserDto } from 'src/app/shared/models/user.model';
+import { CourseService } from 'src/app/shared/services/course.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { __values } from 'tslib';
 
@@ -13,14 +14,15 @@ import { __values } from 'tslib';
 export class UserComponent implements OnInit {
 
   public users:any;
+  public courses:any;
   
   public userForm: FormGroup;
 
     constructor(
       private userService: UserService,
-      private formBuilder:FormBuilder
+      private courseService:CourseService
     ){
-
+      this.courses = this.courseService.getCourses();
       this.userForm = new FormGroup({
         dni: new FormControl(),
         name: new FormControl(),
@@ -30,19 +32,17 @@ export class UserComponent implements OnInit {
         details: new FormControl(),
         rights: new FormControl(),
       });
-      
-      this.users = this.userService.getUsers();
+
   }
   ngOnInit(): void {
-    this.users.subscribe((data: any)=> {
 
-      this.users = data.rows;
-    });
+    this.courses.subscribe((data: any)=> {
+      this.courses = data.rows;
+    }); 
   }
   updateUser () { // TODO
     this.userService.updateUser(this.userForm.value);
   }
-
   showUser(e: any) {
     if (!e.target.value){return};
     let dni:any = e.target.value? e.target.value:null;
@@ -63,5 +63,10 @@ export class UserComponent implements OnInit {
       
       }) ;
     })
+  }
+  showCourseUsers(e:Event|any) {
+    this.courseService.getCourseUsers(e.target.value).subscribe((data: any)=> {
+        this.users = data.rows;
+    });
   }
 }
