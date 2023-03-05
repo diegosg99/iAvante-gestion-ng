@@ -34,8 +34,7 @@ export class UserService {
         return this.httpService.post < User > (this.apiURL + 'student/', JSON.stringify(user), this.httpOptions).pipe(catchError(this.errorHandler))
     }
     updateUser(user: any) {
-      console.log(JSON.stringify(user));
-      return this.httpService.put < any > (this.apiURL + 'student/update', JSON.stringify(user)).pipe(catchError(this.errorHandler))
+      return this.httpService.put < any > (this.apiURL + 'student/update',user).pipe(catchError(this.errorHandler))
     }
 
     errorHandler(error: {

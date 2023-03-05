@@ -2,9 +2,10 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const cors = require("cors");
 const mysql = require('mysql');
+const moment = require('moment');
 
-//const moment = require('moment');
-//const jwt = require("jsonwebtoken");
+
+const formatComplete = 'YYYY-MM-DD HH:mm:ss'
 
 const connection = mysql.createConnection({
   host     : 'localhost',
@@ -85,7 +86,9 @@ app.get('/courses',(req,res) => {
 app.put('/student/update',(req,res) => {
   try{
     let data = req.body;
-    data = JSON.parse(data);
+
+    let timestamp = moment().unix();
+
     let sql = `UPDATE alumnos 
                   SET dni='${data.dni}',
                   name='${data.name}',
@@ -93,7 +96,8 @@ app.put('/student/update',(req,res) => {
                   email='${data.email}',
                   phone='${data.phone}',
                   details='${data.details}',
-                  rights='${data.rights = true ? 1 : 0}'
+                  rights='${data.rights}',
+                  entry='${moment.unix(timestamp).format("YYYY-MM-DD HH:mm:ss")}'
                   WHERE dni = '${data.dni}';`;
 
     connection.query(sql, function(err, rows, fields) {

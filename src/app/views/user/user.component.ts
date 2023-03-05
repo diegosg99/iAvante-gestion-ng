@@ -40,7 +40,7 @@ export class UserComponent implements OnInit {
     }); 
   }
   updateUser () { // TODO
-    this.userService.updateUser(this.userForm.value);
+    this.userService.updateUser(this.userForm.value).subscribe(data=>{});
   }
   showUser(e: any) {
     if (!e.target.value){return};
