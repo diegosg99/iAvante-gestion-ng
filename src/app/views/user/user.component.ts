@@ -1,9 +1,10 @@
 import { Component,EventEmitter,OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { User,UserDto } from 'src/app/shared/models/user.model';
 import { CourseService } from 'src/app/shared/services/course.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { __values } from 'tslib';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -49,6 +50,7 @@ export class UserComponent implements OnInit {
   }
   updateUser () { // TODO
     this.userService.updateUser(this.userForm.value).subscribe(data=>{this.sendForm()});
+    
   }
   showUser(e: any) {
     if (!e.target.value){return};

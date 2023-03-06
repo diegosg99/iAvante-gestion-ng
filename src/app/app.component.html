@@ -296,14 +296,16 @@
 <!-- Toolbar -->
 <app-navbar></app-navbar>
 
-<div class="content" role="main" href="/">
+<div class="content" role="main" href="/"  style="margin-bottom: 0px;">
   <ng-container>
 
-    <app-user (formSent)="onFormSent()" *ngIf="!isFormSent"></app-user>
+
+    <router-outlet></router-outlet>
+    <!-- <app-user (formSent)="onFormSent()" *ngIf="!isFormSent"></app-user> -->
 
     <!-- -->
 
-    <app-documentation *ngIf="isFormSent"></app-documentation> 
+    <!-- <app-documentation *ngIf="isFormSent"></app-documentation>  -->
     <!-- Background -->
     <svg id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
       <title>Gray Clouds Background</title>
@@ -315,5 +317,3 @@
 
 <!-- Footer -->
 <app-footer></app-footer>
-
-<router-outlet></router-outlet>

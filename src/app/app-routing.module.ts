@@ -6,20 +6,15 @@ import { UserComponent } from './views/user/user.component';
 const routes:Routes=[
   {
     path:'',
-    pathMatch:'full',
-    redirectTo:'app-root'
-  },
-  {
-    path:'user',
-    redirectTo:'app-user'
+    component: UserComponent
   },
   {
     path:'documentation',
-    redirectTo:'app-documentation'
+    component: DocumentationComponent
   },
   {
     path:'tickets',
-    redirectTo:'app-tickets'
+    component: TicketsComponent
   },
 ];
 
