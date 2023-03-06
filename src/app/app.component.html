@@ -296,8 +296,8 @@
 <!-- Toolbar -->
 <app-navbar></app-navbar>
 
-<div class="content" role="main">
-  <ng-container #dynamicContainer>
+<div class="content" role="main" href="/">
+  <ng-container>
 
     <app-user (formSent)="onFormSent()" *ngIf="!isFormSent"></app-user>
 

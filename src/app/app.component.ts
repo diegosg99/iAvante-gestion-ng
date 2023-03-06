@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'iAvante-gestion-ng';
-  isFormSent = true;
+  isFormSent = false;
 
     onFormSent () {
        this.isFormSent = true;

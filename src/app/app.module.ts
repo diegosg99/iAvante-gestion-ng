@@ -14,19 +14,28 @@ import { RouterModule, Routes, UrlSegment } from '@angular/router';
 import { CourseService } from './shared/services/course.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DocumentationComponent } from './views/documentation/documentation.component';
+import { TicketsComponent } from './views/tickets/tickets.component';
 
-const routes:Routes=[
+// const routes:Routes=[
 
-  {
-    path:'',
-    pathMatch:'full',
-    redirectTo:'app-root'
-  },
-  {
-    path:'courses',
-    redirectTo:'app-courses'
-  }
-];
+//   {
+//     path:'',
+//     pathMatch:'full',
+//     redirectTo:'app-root'
+//   },
+//   {
+//     path:'user',
+//     redirectTo:'app-user'
+//   },
+//   {
+//     path:'documentation',
+//     redirectTo:'app-documentation'
+//   },
+//   {
+//     path:'tickets',
+//     redirectTo:'app-tickets'
+//   },
+// ];
 
 @NgModule({
   declarations: [
@@ -35,14 +44,14 @@ const routes:Routes=[
     NavbarComponent,
     FooterComponent,
     ExcelComponent,
-    DocumentationComponent
+    DocumentationComponent,
+    TicketsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot([])
+    ReactiveFormsModule
   ],
   providers: [UserService,CourseService],
   bootstrap: [AppComponent]
