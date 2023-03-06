@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,EventEmitter,OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { User,UserDto } from 'src/app/shared/models/user.model';
 import { CourseService } from 'src/app/shared/services/course.service';
@@ -34,13 +34,21 @@ export class UserComponent implements OnInit {
       });
 
   }
+
+  @Output() formSent: EventEmitter<void> = new EventEmitter();
+
+  sendForm () {
+     // Send your form
+     this.formSent.emit();
+  }
+
   ngOnInit(): void {
     this.courses.subscribe((data: any)=> {
       this.courses = data.rows;
     }); 
   }
   updateUser () { // TODO
-    this.userService.updateUser(this.userForm.value).subscribe(data=>{});
+    this.userService.updateUser(this.userForm.value).subscribe(data=>{this.sendForm()});
   }
   showUser(e: any) {
     if (!e.target.value){return};

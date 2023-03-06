@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes, UrlSegment } from '@angular/router';
 import { CourseService } from './shared/services/course.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DocumentationComponent } from './views/documentation/documentation.component';
 
 const routes:Routes=[
 
@@ -33,7 +34,8 @@ const routes:Routes=[
     UserComponent,
     NavbarComponent,
     FooterComponent,
-    ExcelComponent
+    ExcelComponent,
+    DocumentationComponent
   ],
   imports: [
     BrowserModule,
