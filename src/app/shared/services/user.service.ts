@@ -33,9 +33,8 @@ export class UserService {
     addUser(user: User): Observable < User > {
         return this.httpService.post < User > (this.apiURL + 'student/', JSON.stringify(user), this.httpOptions).pipe(catchError(this.errorHandler))
     }
-
-    updateUser(value: any) {
-      throw new Error('Method not implemented.');
+    updateUser(user: any) {
+      return this.httpService.put < any > (this.apiURL + 'student/update',user).pipe(catchError(this.errorHandler))
     }
 
     errorHandler(error: {

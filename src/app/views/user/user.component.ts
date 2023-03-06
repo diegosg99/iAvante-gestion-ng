@@ -1,9 +1,10 @@
-import { Component,OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Component,EventEmitter,OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { User,UserDto } from 'src/app/shared/models/user.model';
 import { CourseService } from 'src/app/shared/services/course.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { __values } from 'tslib';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -34,14 +35,22 @@ export class UserComponent implements OnInit {
       });
 
   }
-  ngOnInit(): void {
 
+  @Output() formSent: EventEmitter<void> = new EventEmitter();
+
+  sendForm () {
+     // Send your form
+     this.formSent.emit();
+  }
+
+  ngOnInit(): void {
     this.courses.subscribe((data: any)=> {
       this.courses = data.rows;
     }); 
   }
   updateUser () { // TODO
-    this.userService.updateUser(this.userForm.value);
+    this.userService.updateUser(this.userForm.value).subscribe(data=>{this.sendForm()});
+    
   }
   showUser(e: any) {
     if (!e.target.value){return};

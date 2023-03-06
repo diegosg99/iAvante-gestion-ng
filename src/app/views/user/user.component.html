@@ -1,5 +1,3 @@
-<!-- Modal -->
-
 <div class="div-formulario" id="containerStudentForm">
     <div class="section">
       <h4>Selecciona el curso:</h4>
@@ -25,7 +23,6 @@
           </div>
     </div>
     <hr class="hr hr-blurry" />
-    <!-- [formGroup]="userForm" (ngSubmit)="addUser(userForm.value)" -->
     <form id="studentForm" [formGroup]="userForm" (ngSubmit)="updateUser()">
     <h4>Rellene los siguientes datos</h4>
         <div class="form-group">
@@ -59,7 +56,7 @@
           </div>
         <div class="form-group">
             <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="userRights" formControlName="rights">
+            <input type="checkbox" class="form-check-input" id="userRights" formControlName="rights" required>
             <label class="form-check-label" for="userRights">Acepto</label>
             <small class="form-text text-muted">Al hacer click aceptas que usemos tus <a class="link-primary" href="https://asesorias.com/empresas/wp-content/uploads/2020/01/Modelo-contrato-cesion-derechos-imagen.png">derechos</a> de imagen y gestionar tus datos.</small>
             </div>
@@ -67,8 +64,7 @@
         <br>
         <div class="row">
           <div class="col-md-3"></div>
-          <!-- <a class="btn btn-primary" class="col-md-6 btn btn-primary" href="#documentation">Siguiente</a> -->
-          <button type="submit" class="col-md-6 btn btn-primary" id="submitForm" href="#documentation">Siguiente</button>
+            <button type="submit" routerLink="/documentation" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col-md-6 btn btn-primary" id="submitForm" (click)="updateUser()">Siguiente</button>
         </div>
       </form>
   </div>
