@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DocumentationComponent } from './views/documentation/documentation.component';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { TicketsComponent } from './views/tickets/tickets.component';
 import { UserComponent } from './views/user/user.component';
 const routes:Routes=[
@@ -9,13 +10,17 @@ const routes:Routes=[
     component: UserComponent
   },
   {
-    path:'documentation',
+    path:'documentation/:dni',
     component: DocumentationComponent
   },
   {
-    path:'tickets',
+    path:'tickets/:dni',
     component: TicketsComponent
-  },
+  }
+  // { 
+  //   path: '**',
+  //   component: PageNotFoundComponent 
+  // }
 ];
 
 @NgModule({

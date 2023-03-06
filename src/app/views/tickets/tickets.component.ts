@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tickets',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class TicketsComponent {
 
+  dni:string|null;
+
+  constructor(private route: ActivatedRoute){
+    this.dni = "";
+  }
+
+
+  ngOnInit() {
+    this.dni = this.route.snapshot.paramMap.get('dni');
+  }
 }

@@ -25,16 +25,16 @@ export class UserService {
     }
 
     getUsers(): Observable < User[] > {
-      return this.httpService.get < User[] > (this.apiURL + 'students/').pipe(catchError(this.errorHandler));
+      return this.httpService.get < User[] > (this.apiURL + 'students/');
     }
     getUser(dni:any): Observable < User[] > {
-      return this.httpService.get < User[] > (this.apiURL + 'student/data/'+dni).pipe(catchError(this.errorHandler));
+      return this.httpService.get < User[] > (this.apiURL + 'student/data/'+dni);
     }
     addUser(user: User): Observable < User > {
-        return this.httpService.post < User > (this.apiURL + 'student/', JSON.stringify(user), this.httpOptions).pipe(catchError(this.errorHandler))
+        return this.httpService.post < User > (this.apiURL + 'student/', JSON.stringify(user), this.httpOptions)
     }
     updateUser(user: any) {
-      return this.httpService.put < any > (this.apiURL + 'student/update',user).pipe(catchError(this.errorHandler))
+      return this.httpService.put < any > (this.apiURL + 'student/update',user)
     }
 
     errorHandler(error: {

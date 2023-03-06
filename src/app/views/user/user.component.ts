@@ -16,13 +16,16 @@ export class UserComponent implements OnInit {
 
   public users:any;
   public courses:any;
+  public dni:string;
   
   public userForm: FormGroup;
 
     constructor(
       private userService: UserService,
+      private route: ActivatedRoute,
       private courseService:CourseService
     ){
+      this.dni = "";
       this.courses = this.courseService.getCourses();
       this.userForm = new FormGroup({
         dni: new FormControl(),
@@ -46,7 +49,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.courses.subscribe((data: any)=> {
       this.courses = data.rows;
-    }); 
+    });
   }
   updateUser () { // TODO
     this.userService.updateUser(this.userForm.value).subscribe(data=>{this.sendForm()});
@@ -61,6 +64,8 @@ export class UserComponent implements OnInit {
     user.subscribe((data:any) => {
 
       let formUser = data.rows[0];
+      this.dni = formUser.dni;
+      console.log(this.dni);
       this.userForm.setValue({
         'dni':dni,
         'name':formUser.name,
