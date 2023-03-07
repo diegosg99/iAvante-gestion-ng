@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 //import * as path from 'path';
-//import * as Excel from 'exceljs';
+//ng import * as Excel from 'exceljs';
 
 declare var window:any;
 //const filePath = path.resolve(__dirname, 'olympic-hockey-player.xlsx');

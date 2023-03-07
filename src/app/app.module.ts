@@ -15,7 +15,8 @@ import { CourseService } from './shared/services/course.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DocumentationComponent } from './views/documentation/documentation.component';
 import { TicketsComponent } from './views/tickets/tickets.component';
-//import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import { SurveyComponent } from './views/survey/survey.component';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,9 @@ import { TicketsComponent } from './views/tickets/tickets.component';
     FooterComponent,
     ExcelComponent,
     DocumentationComponent,
-    TicketsComponent
-    //PageNotFoundComponent
+    TicketsComponent,
+    SurveyComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

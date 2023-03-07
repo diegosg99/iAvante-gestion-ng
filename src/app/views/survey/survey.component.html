@@ -1,0 +1,150 @@
+<!-- <div class="container slider-one-active">
+    <div class="steps">
+    <div class="step step-one">
+        <div class="liner"></div>
+        <span>Hello!</span>
+    </div>
+    <div class="step step-two">
+        <div class="liner"></div>
+        <span>Rating</span>
+    </div>
+    <div class="step step-three">
+        <div class="liner"></div>
+        <span>Conclusion</span>
+    </div>
+    </div>
+    <div class="line">
+    <div class="dot-move"></div>
+    <div class="dot zero"></div>
+    <div class="dot center"></div>
+    <div class="dot full"></div>
+    </div>
+    <div class="slider-ctr">
+    <div class="slider">
+        <form class="slider-form slider-one">
+        <h2>Step Form Design Experience</h2>
+        <label class="input">
+            <input type="text" class="name" placeholder="What's your name?">
+        </label>
+        <button class="first next">Next Step</button>
+        </form>
+        <form class="slider-form slider-two">
+        <h2>Are you happy with our service?</h2>
+        <div class="label-ctr">
+            <label class="radio">
+            <input type="radio" value="happy" name="condition">
+            <div class="emot happy">
+                <div class="mouth sad"></div>
+            </div>
+            </label>
+            <label class="radio">
+            <input type="radio" value="happy" name="condition">
+            <div class="emot happy">
+                <div class="mouth smile"></div>
+            </div>
+            </label>
+        </div>
+        <button class="second next">Next Step</button>
+        </form>
+        <div class="slider-form slider-three">
+        <h2>Hello, <span class="yourname"></span></h2>
+        <h3>Thank you for your input!
+            </h3>
+        <a class="reset" href="https://codepen.io/balapa/pen/XbXVRg" target="_blank">Reset</a>
+        </div>
+    </div>
+    </div>
+</div> -->
+
+
+
+<div class="mx-0 mx-sm-auto mt-4">
+    <div class="card">
+      <div class="card-header" style="background-color: #7ae582;">
+        <h5 class="card-title text-white mt-2" id="exampleModalLabel">Encuesta de satisfacción</h5>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <i class="far fa-file-alt fa-4x mt-3" style="color: #7ae582;font-size: 32px;"></i>
+          <p>
+            <strong>Tu opinión importa</strong>
+          </p>
+          <p>
+            ¿Tienes alguna idea de como podríamos mejorar nuestro servicio?
+            <strong>Dejanos una valoración.</strong>
+            <br>
+            <small>Es muy importante para nosotros...</small>
+          </p>
+        </div>
+  
+        <hr />
+
+
+  
+        <form class="px-4" action="">
+          <p class="text-center"><strong>Tu opinion</strong></p>
+  
+          <!-- <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="exampleForm" id="radio3Example1" />
+            <label class="form-check-label" for="radio3Example1">
+              Excelente
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="exampleForm" id="radio3Example2" />
+            <label class="form-check-label" for="radio3Example2">
+              Bueno
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="exampleForm" id="radio3Example3" />
+            <label class="form-check-label" for="radio3Example3">
+              Neutro
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="exampleForm" id="radio3Example4" />
+            <label class="form-check-label" for="radio3Example4">
+              Mal
+            </label>
+          </div>
+          <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="exampleForm" id="radio3Example5" />
+            <label class="form-check-label" for="radio3Example5">
+              Muy mal
+            </label>
+          </div> -->
+          <p class="text-center">¿Estas satisfecho con las explicaciones del docente?</p>
+
+          <div class='range'>
+            <input type="range" value="90" min='0' max='100' step='1' #range1 (change)="showData(range1)"/>
+            <span>{{range1.value}}</span>
+          </div>
+
+          <p class="text-center">¿Estás satisfecho con la parte práctica del taller?</p>
+
+          <div class='range'>
+            <input type="range" value="90" min='0' max='100' step='1' #range2 (change)="showData(range2)"/>
+            <span>{{range2.value}}</span>
+          </div>
+
+          <p class="text-center">¿Has aprendido lo que esperabas?</p>
+
+          <div class='range'>
+            <input type="range" value="90" min='0' max='100' step='1' #range3 (change)="showData(range3)"/>
+            <span>{{range3.value}}</span>
+          </div>
+    
+          <p class="text-center"><strong>¿En qué podríamos mejorar?</strong></p>
+  
+          <div class="form-outline mb-4">
+            <textarea class="form-control" id="form4Example3" rows="4" placeholder="Cuentanos que te gustaría ver la próxima vez que vengas..."></textarea>
+            <!-- <label class="form-label" for="form4Example3"></label> -->
+          </div>
+        </form>
+      </div>
+      <div class="card-footer text-end">
+        <button type="button" class="btn btn-primary">Enviar</button>
+      </div>
+    </div>
+  </div>

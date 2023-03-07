@@ -1,0 +1,37 @@
+.range input{
+    margin-left:10%;
+	width:80%;
+	height:4px;
+	border-radius:5px;
+	background-color:#9fffcb;
+	outline:none;
+    margin-bottom:3em;
+}
+.range input::-webkit-slider-thumb{
+	-webkit-appearance:none;
+	width:20px;
+	height:20px;
+	border-radius:50%;
+	background-color:#9fffcb;
+}
+.range span{
+	position:absolute;
+	margin-left:14px;
+	width:50px;
+	height:30px;
+	background-color:#222;
+	color:#fff;
+	border-radius:3px;
+	text-align:center;
+	line-height:30px;
+}
+.range span:before{
+	content:'';
+	position:absolute;
+	border-right:9px solid transparent;
+	border-left:9px solid transparent;
+	border-bottom:12px solid #222;
+	left:-10px;
+	top:50%;
+	transform:translateY(-50%) rotate(-90deg);
+}
