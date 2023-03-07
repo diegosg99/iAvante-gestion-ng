@@ -1,19 +1,31 @@
-<div class="div-formulario" id="containerStudentForm">
+<div class="div-formulario light-green-bg card" id="containerStudentForm">
     <div class="section">
-      <h4>Ya puedes pasar al curso:</h4>
+      <h4 class="p-3">Ya puedes pasar al curso:</h4>
       <hr class="hr hr-blurry" />    
 
       <div class="form-group" style="margin-bottom: 0px;">
             <div class="row">
-                <h6 class="col-md-4">Aula:</h6>
-                <p class="col-md-8">25</p>
+                <div class="col-6 row">
+                    <h6 class="col-md-6">Aula:</h6>
+                    <p class="col-md-6">25</p>
+                </div>
+                
+                <div class="col-6 row">
+                    <h6 class="col-md-6">Tu número de alumno:</h6>
+                    <p class="col-md-6">106</p>
+                </div>
             </div> 
-            <hr class="hr hr-blurry" />    
+            <hr class="hr hr-blurry" />
             <div class="row">
-                <h6 class="col-md-4">Tu número de alumno:</h6>
-                <p class="col-md-8">106</p>
+                <div class="col-3">
+                    <button type="submit" [routerLink]="['/documentation',dni]" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col-md-6 btn btn-light">Volver</button>
+                </div>
+                <div class="col">
+                    <button type="submit" [routerLink]="['/survey',dni]" routerLinkActive="active" ariaCurrentWhenActive="page"  class="w-100 btn btn-primary">Finalizar</button>
+                </div>
+                <div class="col-3">
+                </div>
             </div> 
-            <hr class="hr hr-blurry" style="margin-bottom: 0px;" />    
       </div>
     </div>
   </div>

@@ -1,18 +1,20 @@
-<h1>Documentación del curso:</h1>
-<div class="container">
-    <p><a href="../../../assets/docs/documentacion.pdf">Descargar</a> archivo PDF.</p>
-
-    <hr class="hr hr-blurry" />    
-    <div class="section">
-        <iframe src="../../../assets/docs/documentacion.pdf" width="100%" height="500px">
-        </iframe>
-    </div>
-    <hr class="hr hr-blurry" />    
-    <div class="row">
-        <div class="col"></div>
-        <button class="btn btn-primary col" routerLink="/tickets" routerLinkActive="active" ariaCurrentWhenActive="page">Entrar al curso</button>
-        <div class="col"></div>
+<div class="mx-0 mx-sm-auto mt-4 light-green-bg card">
+    <h1 class="p-3">Documentación del curso:</h1>
+    <div class="container card-text">
+        <p class="pl-2"><a href="../../../assets/docs/documentacion.pdf">Descargar</a> archivo PDF.</p>
+    
+        <hr class="hr hr-blurry" />    
+        <div class="section">
+            <iframe src="../../../assets/docs/documentacion.pdf" width="100%" height="500px">
+            </iframe>
+        </div>
+        <hr class="hr hr-blurry" />    
+        <div class="row" style="margin-bottom:1em;">
+            <div class="col-3">
+                <button routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col-md-6 btn btn-light">Volver</button>
+            </div>
+            <button class="btn btn-primary col" [routerLink]="['/tickets',dni]" routerLinkActive="active" ariaCurrentWhenActive="page">Entrar al curso</button>
+            <div class="col-3"></div>
+        </div>
     </div>
 </div>
-
-

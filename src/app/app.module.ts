@@ -15,27 +15,8 @@ import { CourseService } from './shared/services/course.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DocumentationComponent } from './views/documentation/documentation.component';
 import { TicketsComponent } from './views/tickets/tickets.component';
-
-// const routes:Routes=[
-
-//   {
-//     path:'',
-//     pathMatch:'full',
-//     redirectTo:'app-root'
-//   },
-//   {
-//     path:'user',
-//     redirectTo:'app-user'
-//   },
-//   {
-//     path:'documentation',
-//     redirectTo:'app-documentation'
-//   },
-//   {
-//     path:'tickets',
-//     redirectTo:'app-tickets'
-//   },
-// ];
+import { SurveyComponent } from './views/survey/survey.component';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +26,9 @@ import { TicketsComponent } from './views/tickets/tickets.component';
     FooterComponent,
     ExcelComponent,
     DocumentationComponent,
-    TicketsComponent
+    TicketsComponent,
+    SurveyComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

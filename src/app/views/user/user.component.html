@@ -1,7 +1,7 @@
-<div class="div-formulario" id="containerStudentForm">
+<div class="div-formulario light-green-bg card" id="containerStudentForm">
     <div class="section">
-      <h4>Selecciona el curso:</h4>
-      <div class="form-group">
+      <h4 class="w-75 mx-auto">Selecciona el curso:</h4>
+      <div class="form-group w-75 mx-auto">
               <select class="form-control" id="select-curso" (change)="showCourseUsers($event)">
                     <option>Seleccionar curso...</option>
                     <option *ngFor="let course of courses"
@@ -12,8 +12,8 @@
         </div>
     </div>
     <div class="section">
-        <h4>Selecciona un alumno:</h4>
-        <div class="form-group">
+        <h4 class="w-75 mx-auto">Selecciona un alumno:</h4>
+        <div class="form-group w-75 mx-auto">
                 <select class="form-control" id="select-alumno" (change)="showUser($event)">
                     <option>Seleccionar alumno...</option>
                     <option *ngFor="let user of users"
@@ -24,13 +24,13 @@
     </div>
     <hr class="hr hr-blurry" />
     <form id="studentForm" [formGroup]="userForm" (ngSubmit)="updateUser()">
-    <h4>Rellene los siguientes datos</h4>
-        <div class="form-group">
+    <h4 class="w-75 mx-auto">Rellene los siguientes datos</h4>
+        <div class="form-group w-75 mx-auto">
             <label for="userDni">DNI:</label>
             <input type="text" class="form-control" id="userDni" placeholder="DNI" formControlName="dni">
             <small class="form-text text-muted">Nunca compartiremos tus datos.</small>
         </div>
-        <div class="form-group row">
+        <div class="form-group row w-75 mx-auto">
           <div class="col">
             <label for="userName">Nombre:</label>
             <input type="text" class="form-control" id="userName" placeholder="Nombre" formControlName="name">
@@ -40,7 +40,7 @@
             <input type="text" class="form-control" id="userSurname" placeholder="Apellidos" formControlName="surname">  
           </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row w-75 mx-auto">
           <div class="col-md-8">
             <label for="userEmail">Email:</label>
             <input type="text" class="form-control" id="userEmail" placeholder="Email" formControlName="email">
@@ -50,11 +50,11 @@
             <input type="text" class="form-control" id="userPhone" placeholder="Teléfono" formControlName="phone">
           </div>
           </div>
-          <div class="form-group">
+          <div class="form-group w-75 mx-auto">
             <label for="userDetails">Observaciones:</label>
             <input type="textarea" class="form-control" id="userDetails" placeholder="Observaciones" formControlName="details">
           </div>
-        <div class="form-group">
+        <div class="form-group w-75 mx-auto">
             <div class="form-check">
             <input type="checkbox" class="form-check-input" id="userRights" formControlName="rights" required>
             <label class="form-check-label" for="userRights">Acepto</label>
@@ -64,7 +64,7 @@
         <br>
         <div class="row">
           <div class="col-md-3"></div>
-            <button type="submit" routerLink="/documentation" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col-md-6 btn btn-primary" id="submitForm" (click)="updateUser()">Siguiente</button>
+            <button type="submit" [routerLink]="['/documentation',userForm.value.dni]" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col-md-6 btn btn-primary" id="submitForm" (click)="updateUser()">Siguiente</button>
         </div>
       </form>
   </div>
