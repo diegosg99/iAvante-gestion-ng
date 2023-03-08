@@ -49,7 +49,7 @@ export class CourseService {
       return this.httpService.get < User[] > (this.apiURL + 'students/course/'+code).pipe(catchError(this.errorHandler));
     }
 
-    addCourse(course: Course): Observable < Course > {
-        return this.httpService.post < Course > (this.apiURL + 'course/', JSON.stringify(course), this.httpOptions).pipe(catchError(this.errorHandler))
-    }
+    // addCourse(course: Course): Observable < Course > {
+    //     return this.httpService.post < Course > (this.apiURL + 'course/', JSON.stringify(course), this.httpOptions).pipe(catchError(this.errorHandler))
+    // }
 } 

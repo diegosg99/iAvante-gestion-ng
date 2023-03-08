@@ -79,6 +79,7 @@ export class UserComponent implements OnInit {
     })
   }
   showCourseUsers(e:Event|any) {
+    
     this.courseService.getCourseUsers(e.target.value).subscribe((data: any)=> {
         this.users = data.rows;
     });
