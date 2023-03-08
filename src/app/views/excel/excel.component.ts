@@ -20,6 +20,12 @@ export class ExcelComponent implements OnInit {
   e:Event | any;
   data: any;
 
+  docType:string = "cursos";
+
+  tableCourse: boolean = (this.docType === 'cursos'?true:false);
+  tableStudents: boolean = (this.docType === 'alumnos'?true:false);
+  tableDocents: boolean = (this.docType === 'docentes'?true:false);
+
   constructor(){
   }
 
@@ -46,6 +52,7 @@ export class ExcelComponent implements OnInit {
   convert = async (docType:string) => {
     let reader = new FileReader();
     let rows:Array<any> = [];
+    this.docType = docType;
 
     reader.readAsArrayBuffer(this.file);
     reader.onload = () => {
@@ -53,49 +60,45 @@ export class ExcelComponent implements OnInit {
       const buffer:any = reader.result;
       const wb = new Excel.Workbook();
 
-      wb.xlsx.load(buffer).then(workbook => {
+      wb.xlsx.load(buffer)
+      .then(workbook => {
 
-      let sheet = workbook.worksheets[0];
+        let sheet = workbook.worksheets[0];
+        sheet.eachRow((row,i) => { rows[i] = (row.values) })
 
-        sheet.eachRow((row,i) => {
-            rows[i] = (row.values);
-        })
-
-        return rows;
-        }).then(
+        return rows;})
+        .then(
           rows => {
             this.data = this.processData(rows,docType);
-            console.log(this.data);
           })
     }
   }
-
   processData = (rows:any,docType:string) => {
-    if (docType =='cursos') {
+    if (this.tableCourse) {
       try {
-      return this.data = rows.map((row:Excel.Row,index:number): Course | undefined => {
+      return this.data = rows.map((row:Excel.Row | any,index:number): Course | undefined => {
                   if (index === 1 || index === 3){
                       return;
                   }
           return new Course({
-            code: this.getCellValue(row,1,index),
-            name: this.getCellValue(row, 2,index),
-            start: this.getCellValue(row, 3,index),
-            end: this.getCellValue(row, 4,index),
-            preStart: this.getCellValue(row, 5,index),
-            preEnd: this.getCellValue(row, 6,index),
-            endDate: this.getCellValue(row, 7,index),
-            place: this.getCellValue(row, 8,index),
-            province: this.getCellValue(row, 9,index),
-            solicitudes: this.getCellValue(row, 10,index),
-            enrollments: this.getCellValue(row, 11,index),
-            realized: this.getCellValue(row, 12,index),
-            passed: this.getCellValue(row, 13,index),
-            acreditation: this.getCellValue(row, 14,index),
-            expedientNum: this.getCellValue(row, 15,index),
-            creditNum: this.getCellValue(row, 16,index),
-            daysToClose: this.getCellValue(row,17,index),
-            closeState: this.getCellValue(row,18,index)
+            code: row[1],
+            name: row[2],
+            start: row[3],
+            end: row[4],
+            preStart: row[5],
+            preEnd: row[6],
+            endDate: row[7],
+            place: row[8],
+            province: row[9],
+            solicitudes: row[10],
+            enrollments: row[11],
+            realized: row[12],
+            passed: row[13],
+            acreditation: row[14],
+            expedientNum: row[15],
+            creditNum: row[16],
+            daysToClose: row[17],
+            closeState: row[18]
           })
         }).filter(this.isUndefined);
       } catch (error) {
@@ -104,22 +107,12 @@ export class ExcelComponent implements OnInit {
       };
     }
 
-    if (docType==='docentes') {
+    if (this.tableDocents) {
     }
-    if (docType==='alumnos') {
+    if (this.tableStudents) {
     }
     return this.data;
   }
-
-  getCellValue = (row:Excel.Row | any, cellIndex:number,index:number) => {
-    try {
-      const cell = row[cellIndex];
-      return cell;
-    } catch (error) {
-      return;
-    }
-  };
-
   isUndefined = (item: Course | undefined): item is Course => {  return !!item}
 
   importar(){}

@@ -5,7 +5,7 @@
 </div>
 
 <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog w-100 m-0" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <img src="assets/images/excel-icon.svg">
@@ -40,12 +40,92 @@
                     <pre id="jsondata"></pre>
                 </div>
             </div>
-            <div class="row">
-              <div class="col-md-2"></div>
-              <div id="dinamic-table">
-
-              </div>
-              <div class="col-md-2"></div>
+            <div>
+              <h3>Tabla de contenido:</h3>
+            </div>
+            <div class="datatable-inner"
+            mdbScrollbar
+            style="position: relative;">
+              <table id="dtHorizontal" cellspacing="0" class="table table-striped custom-overflow table-bordered table-sm" *ngIf="tableCourse">
+                <thead>
+                  <tr scope="row">
+                    <td scope="col">Código</td>
+                    <td scope="col">Nombre</td>
+                    <td scope="col">Inicio</td>
+                    <td scope="col">Final</td>
+                    <td scope="col">preInicio</td>
+                    <td scope="col">preFinal</td>
+                    <td scope="col">Fecha de finalización</td>
+                    <td scope="col">Lugar</td>
+                    <td scope="col">Provincia</td>
+                    <td scope="col">Solicitudes</td>
+                    <td scope="col">Matriculados</td>
+                    <td scope="col">Realizados</td>
+                    <td scope="col">Aprobados</td>
+                    <td scope="col">Acreditados</td>
+                    <td scope="col">Nº Expediente</td>
+                    <td scope="col">Nº Credito</td>
+                    <td scope="col">Dias para cierre</td>
+                    <td scope="col">Estado de cierre</td>
+                  </tr>
+                </thead>
+                    <tr  *ngFor="let item of data" scope="row">
+                      <td scope="col">
+                        {{item.code}}
+                      </td>
+                      <td scope="col">
+                        {{item.name}}
+                      </td>
+                      <td scope="col">
+                        {{item.start}}
+                      </td>
+                      <td scope="col">
+                        {{item.end}}
+                      </td>
+                      <td scope="col">
+                        {{item.preStart}}
+                      </td>
+                      <td scope="col">
+                        {{item.preEnd}}
+                      </td>
+                      <td scope="col">
+                        {{item.endDate}}
+                      </td>
+                      <td scope="col">
+                        {{item.place}}
+                      </td>
+                      <td scope="col">
+                        {{item.province}}
+                      </td>
+                      <td scope="col">
+                        {{item.Solicitudes}}
+                      </td>
+                      <td scope="col">
+                        {{item.enrollments}}
+                      </td>
+                      <td scope="col">
+                        {{item.realized}}
+                      </td>
+                      <td scope="col">
+                        {{item.passed}}
+                      </td>
+                      <td scope="col">
+                        {{item.acreditation}}
+                      </td>
+                      <td scope="col">
+                        {{item.expedientNum}}
+                      </td>
+                      <td scope="col">
+                        {{item.daysToClose}}
+                      </td>
+                      <td scope="col">
+                        {{item.closeState}}
+                      </td>
+                      <td scope="col">
+                        {{item.code}}
+                      </td>
+                    </tr>
+           </table>
             </div>
             
         </div>
