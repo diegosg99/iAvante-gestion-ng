@@ -27,7 +27,7 @@ export interface CourseDto {
     passed: number | null | string | undefined;
     acreditation: Confirmation | string | undefined;
     expedientNum: String | null | undefined;
-    creditNum: String | null | undefined;
+    creditNum: number | null | undefined;
     daysToClose: number | null | string | undefined;
     closeState: CloseState | string | undefined;
   };
@@ -48,7 +48,7 @@ export class Course {
     private passed: number | null | string | undefined;
     private acreditation: Confirmation | string | undefined;
     private expedientNum: String | null | undefined;
-    private creditNum: String | null | undefined;
+    private creditNum: number | null | undefined;
     private daysToClose: number | null | string | undefined;
     private closeState: CloseState | string | undefined;
 

@@ -43,91 +43,90 @@
             <div>
               <h3>Tabla de contenido:</h3>
             </div>
-            <div class="datatable-inner"
-            mdbScrollbar
-            style="position: relative;">
-              <table id="dtHorizontal" cellspacing="0" class="table table-striped custom-overflow table-bordered table-sm" *ngIf="tableCourse">
-                <thead>
-                  <tr scope="row">
-                    <td scope="col">Código</td>
-                    <td scope="col">Nombre</td>
-                    <td scope="col">Inicio</td>
-                    <td scope="col">Final</td>
-                    <td scope="col">preInicio</td>
-                    <td scope="col">preFinal</td>
-                    <td scope="col">Fecha de finalización</td>
-                    <td scope="col">Lugar</td>
-                    <td scope="col">Provincia</td>
-                    <td scope="col">Solicitudes</td>
-                    <td scope="col">Matriculados</td>
-                    <td scope="col">Realizados</td>
-                    <td scope="col">Aprobados</td>
-                    <td scope="col">Acreditados</td>
-                    <td scope="col">Nº Expediente</td>
-                    <td scope="col">Nº Credito</td>
-                    <td scope="col">Dias para cierre</td>
-                    <td scope="col">Estado de cierre</td>
-                  </tr>
-                </thead>
-                    <tr  *ngFor="let item of data" scope="row">
-                      <td scope="col">
-                        {{item.code}}
-                      </td>
-                      <td scope="col">
-                        {{item.name}}
-                      </td>
-                      <td scope="col">
-                        {{item.start}}
-                      </td>
-                      <td scope="col">
-                        {{item.end}}
-                      </td>
-                      <td scope="col">
-                        {{item.preStart}}
-                      </td>
-                      <td scope="col">
-                        {{item.preEnd}}
-                      </td>
-                      <td scope="col">
-                        {{item.endDate}}
-                      </td>
-                      <td scope="col">
-                        {{item.place}}
-                      </td>
-                      <td scope="col">
-                        {{item.province}}
-                      </td>
-                      <td scope="col">
-                        {{item.Solicitudes}}
-                      </td>
-                      <td scope="col">
-                        {{item.enrollments}}
-                      </td>
-                      <td scope="col">
-                        {{item.realized}}
-                      </td>
-                      <td scope="col">
-                        {{item.passed}}
-                      </td>
-                      <td scope="col">
-                        {{item.acreditation}}
-                      </td>
-                      <td scope="col">
-                        {{item.expedientNum}}
-                      </td>
-                      <td scope="col">
-                        {{item.daysToClose}}
-                      </td>
-                      <td scope="col">
-                        {{item.closeState}}
-                      </td>
-                      <td scope="col">
-                        {{item.code}}
-                      </td>
+            <div>
+              <div style="position: relative;overflow: scroll;max-height: 30em;">
+                <table id="dtHorizontal" cellspacing="0" class="table table-striped table-bordered table-sm" *ngIf="tableCourse">
+                  <thead>
+                    <tr scope="row">
+                      <td scope="col">Código</td>
+                      <td scope="col">Nombre</td>
+                      <td scope="col">Inicio</td>
+                      <td scope="col">Final</td>
+                      <td scope="col">preInicio</td>
+                      <td scope="col">preFinal</td>
+                      <td scope="col">Fecha de finalización</td>
+                      <td scope="col">Lugar</td>
+                      <td scope="col">Provincia</td>
+                      <td scope="col">Solicitudes</td>
+                      <td scope="col">Matriculados</td>
+                      <td scope="col">Realizados</td>
+                      <td scope="col">Aprobados</td>
+                      <td scope="col">Acreditados</td>
+                      <td scope="col">Nº Expediente</td>
+                      <td scope="col">Nº Credito</td>
+                      <td scope="col">Dias para cierre</td>
+                      <td scope="col">Estado de cierre</td>
                     </tr>
-           </table>
-            </div>
-            
+                  </thead>
+                      <tr  *ngFor="let item of data" scope="row">
+                        <td scope="col" class="item-col">
+                          {{item.code}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.name}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.start}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.end}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.preStart}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.preEnd}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.endDate}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.place}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.province}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.solicitudes}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.enrollments}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.realized}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.passed}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.acreditation}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.expedientNum}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.creditNum}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.daysToClose}}
+                        </td>
+                        <td scope="col" class="item-col">
+                          {{item.closeState}}
+                        </td>
+                      </tr>
+             </table>
+              </div>
+            </div> 
         </div>
         </div>
         <div class="modal-footer">

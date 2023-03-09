@@ -4,10 +4,7 @@
     max-width: max-content !important;
 }
 
-.dtHorizontalExampleWrapper {
-    max-width: 600px;
-    margin: 0 auto;
-  }
+
   #dtHorizontal th, td {
     white-space: nowrap;
   }
@@ -23,4 +20,11 @@
   table.dataTable thead .sorting_desc_disabled:after,
   table.dataTable thead .sorting_desc_disabled:before {
    bottom: .5em;
+  }
+
+  .item-col {
+    max-width: 10em;
+    font-size:12px;
+    overflow: hidden;
+    border-right: 1px solid #dee2e6;
   }
