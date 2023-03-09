@@ -20,11 +20,11 @@ export class ExcelComponent implements OnInit {
   e:Event | any;
   data: any;
 
-  docType:string = "cursos";
+  docType:string="";
 
-  tableCourse: boolean = (this.docType === 'cursos'?true:false);
-  tableStudents: boolean = (this.docType === 'alumnos'?true:false);
-  tableDocents: boolean = (this.docType === 'docentes'?true:false);
+  tableCourse: boolean = false;
+  tableStudents: boolean = false;
+  tableDocents: boolean = false;
 
   constructor(){
   }
@@ -33,6 +33,16 @@ export class ExcelComponent implements OnInit {
     this.formModal = new window.bootstrap.Modal(
       this.file = document.getElementById("importExcel")
     )
+  }
+
+  setDocType(docType:string) {
+    this.docType = docType;
+    this.tableCourse = (this.docType === 'cursos') ? true : false;
+    this.tableStudents = (this.docType === 'alumnos') ? true : false;
+    this.tableDocents = (this.docType === 'docentes') ? true : false;
+
+    console.log(this.docType);
+
   }
 
 //------------------------------------------- DOM ------------------------------------------
@@ -49,10 +59,9 @@ export class ExcelComponent implements OnInit {
   loadFile(e:Event|any) {
     this.file = e.target.files[0];
   }
-  convert = async (docType:string) => {
+  convert = async () => {
     let reader = new FileReader();
     let rows:Array<any> = [];
-    this.docType = docType;
 
     reader.readAsArrayBuffer(this.file);
     reader.onload = () => {
@@ -69,8 +78,8 @@ export class ExcelComponent implements OnInit {
         return rows;})
         .then(
           rows => {
-            this.data = this.processData(rows,docType);
-            console.log(this.data);
+            this.data = this.processData(rows,this.docType);
+//            console.log(this.data);
           })
     }
   }

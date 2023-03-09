@@ -18,11 +18,11 @@
           <h6>Selecciona que vas a importar...</h6>
           <div class="col-md-4"></div>
           <div class="-col-md-4">
-            <select class="form-control" #selectExcel>
-              <option>...</option>
+            <select class="form-control" #selectExcel (change)="setDocType(selectExcel.value)">
+              <option>Selecciona que vas a importar...</option>
+              <option value="cursos">Cursos</option>
               <option value="alumnos">Alumnos</option>
               <option value="docentes">Docentes</option>
-              <option value="cursos">Cursos</option>
             </select>
           </div>
           <div class="-col-md-4"></div>
@@ -30,18 +30,15 @@
           <div class="conatiner mt-5">
             <div class="row">
                 <div class="col-md-3"></div>
-                <div class="col-md-3">
+                <div class="col">
                     <input class="form-control" type="file" (change)="loadFile($event)" #inputExcel accept=".xls,.xlsx"  >                      
                 </div>
-                <div class="col-md-2">
-                    <button class="btn btn-light" #convertExcel (click)="convert(selectExcel.value)">Convertir</button>
+                <div class="col-md-3">
+                    <button class="btn btn-light" #convertExcel (click)="convert()">Convertir</button>
                 </div>
                 <div class="col-md-12">
                     <pre id="jsondata"></pre>
                 </div>
-            </div>
-            <div>
-              <h3>Tabla de contenido:</h3>
             </div>
             <div>
               <div style="position: relative;overflow: scroll;max-height: 30em;">
