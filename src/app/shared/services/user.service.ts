@@ -50,4 +50,10 @@ export class UserService {
       }
       return throwError(errorMessage);
   }
+  uploadStudentsFromExcel() {
+
+  }
+  uploadDocentsFromExcel() {
+    
+  }
 } 

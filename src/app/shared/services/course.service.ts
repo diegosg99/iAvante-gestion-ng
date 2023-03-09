@@ -4,6 +4,7 @@ import { User,UserDto } from "../models/user.model";
 import { HttpClient,HttpResponse,HttpHeaders } from "@angular/common/http";
 import { Observable,throwError,from } from "rxjs";
 import { map,catchError } from 'rxjs/operators';
+import {parse, stringify} from 'flatted';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +50,8 @@ export class CourseService {
       return this.httpService.get < User[] > (this.apiURL + 'students/course/'+code).pipe(catchError(this.errorHandler));
     }
 
-    // addCourse(course: Course): Observable < Course > {
-    //     return this.httpService.post < Course > (this.apiURL + 'course/', JSON.stringify(course), this.httpOptions).pipe(catchError(this.errorHandler))
-    // }
+    uploadCoursesFromExcel (courses: Array<Course>): Observable < Course[] > | any {
+        console.log(courses);
+        return this.httpService.post < Course[] >  (this.apiURL + 'courses/uploadExcel', courses).subscribe(console.log)//, this.httpOptions).pipe(catchError(this.errorHandler))
+    }
 } 

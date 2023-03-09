@@ -19,7 +19,7 @@ connection.connect();
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({limit: '500mb'}));
 
 app.get('/courses/name',(req,res) => {
     try{
@@ -104,6 +104,44 @@ app.put('/student/update',(req,res) => {
         if (err) throw err;
         res.status(200).send("exito");
         });
+  }catch(error) {
+    res.status(400).send(req);
+  }
+})
+
+app.post('/courses/uploadExcel',(req,res) => {
+  try{
+    let data = req.body;
+
+    data.forEach(item =>{
+      let sql = `IF NOT EXISTS (select code from cursos where code='${item.code}')
+                  BEGIN
+                  INSERT INTO cursos VALUES ('${item.code}',
+                  '${item.name}',
+                  '${item.start}',
+                  '${item.end}',
+                  '${item.preStart}',
+                  '${item.preEnd}',
+                  '${item.endDate}',
+                  '${item.place}',
+                  '${item.province}',
+                  '${item.solicitudes}',
+                  '${item.enrollments}',
+                  '${item.realized}',
+                  '${item.passed}',
+                  '${item.acreditation}',
+                  '${item.expedientNum}',
+                  '${item.creditNum}',
+                  '${item.daysToClose}',
+                  '${item.closeState}')
+                  END`;
+    
+
+    connection.query(sql, function(err, rows, fields) {
+        if (err) throw err;
+        res.status(200).send("exito");
+        });
+    })
   }catch(error) {
     res.status(400).send(req);
   }

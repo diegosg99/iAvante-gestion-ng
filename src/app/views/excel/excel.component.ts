@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CourseDto,Course } from 'src/app/shared/models/course.model';
 import  * as Excel from 'exceljs'
 import { ArrayType } from '@angular/compiler';
+import { CourseService } from 'src/app/shared/services/course.service';
+import { UserService } from 'src/app/shared/services/user.service';
+
 
 declare var window:any;
 
@@ -20,13 +23,18 @@ export class ExcelComponent implements OnInit {
   e:Event | any;
   data: any;
 
+  courseservice: CourseService;
+  userService: UserService;
+
   docType:string="";
 
   tableCourse: boolean = false;
   tableStudents: boolean = false;
   tableDocents: boolean = false;
 
-  constructor(){
+  constructor(courseService:CourseService,userService:UserService){
+    this.courseservice = courseService;
+    this.userService = userService;
   }
 
   ngOnInit(): void {
@@ -40,9 +48,6 @@ export class ExcelComponent implements OnInit {
     this.tableCourse = (this.docType === 'cursos') ? true : false;
     this.tableStudents = (this.docType === 'alumnos') ? true : false;
     this.tableDocents = (this.docType === 'docentes') ? true : false;
-
-    console.log(this.docType);
-
   }
 
 //------------------------------------------- DOM ------------------------------------------
@@ -91,24 +96,24 @@ export class ExcelComponent implements OnInit {
                       return;
                   }
           return new Course({
-            code: row[1],
-            name: row[2],
-            start: row[3],
-            end: row[4],
-            preStart: row[5],
-            preEnd: row[6],
-            endDate: row[7],
-            place: row[8],
-            province: row[9],
-            solicitudes: row[10],
-            enrollments: row[11],
-            realized: row[12],
-            passed: row[13],
-            acreditation: row[14],
-            expedientNum: row[15],
-            creditNum: row[16],
-            daysToClose: row[17],
-            closeState: row[18]
+            code: row[1]?row[1]:null,
+            name: row[2]?row[2]:null,
+            start: row[3]?row[3].toString():null,
+            end: row[4]?row[4].toString():null,
+            preStart: row[5]?row[5].toString():null,
+            preEnd: row[6]?row[6].toString():null,
+            endDate: row[7]?row[7].toString():null,
+            place: row[8]?row[8]:null,
+            province: row[9]?row[9]:null,
+            solicitudes: row[10]?row[10]:null,
+            enrollments: row[11]?row[11]:null,
+            realized: row[12]?row[12]:null,
+            passed: row[13]?row[13]:null,
+            acreditation: row[14]?row[14]:null,
+            expedientNum: row[15]?row[15]:null,
+            creditNum: row[16]?row[16]:null,
+            daysToClose: row[17]?row[17]:null,
+            closeState: row[18]?row[18]:null
           })
         }).filter(this.isUndefined);
       } catch (error) {
@@ -123,7 +128,16 @@ export class ExcelComponent implements OnInit {
     }
     return this.data;
   }
-  isUndefined = (item: Course | undefined): item is Course => {  return !!item}
+  isUndefined = (item: Course | undefined): item is Course => { return !!item }
 
-  importar(){}
+  async importar(){
+
+    const manager: {[key in string]: () => void} = {
+      cursos: (): void => { this.courseservice.uploadCoursesFromExcel(this.data) },
+      alumnos: (): void => { this.userService.uploadStudentsFromExcel() },
+      docentes: (): void => { this.userService.uploadDocentsFromExcel() },
+    };
+
+    await manager[this.docType]();
+  }
 }
