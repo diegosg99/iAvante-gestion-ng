@@ -113,10 +113,13 @@ app.post('/courses/uploadExcel',(req,res) => {
   try{
     let data = req.body;
 
+//IF NOT EXISTS (select code from cursos where code='${item.code}')
+//...
+//BEGIN
+//...
+
     data.forEach(item =>{
-      let sql = `IF NOT EXISTS (select code from cursos where code='${item.code}')
-                  BEGIN
-                  INSERT INTO cursos VALUES ('${item.code}',
+      let sql = `INSERT INTO cursos VALUES ('${item.code}',
                   '${item.name}',
                   '${item.start}',
                   '${item.end}',
@@ -133,8 +136,7 @@ app.post('/courses/uploadExcel',(req,res) => {
                   '${item.expedientNum}',
                   '${item.creditNum}',
                   '${item.daysToClose}',
-                  '${item.closeState}')
-                  END`;
+                  '${item.closeState}') IF NOT IN (select code from cursos where code='${item.code}');`;
     
 
     connection.query(sql, function(err, rows, fields) {
