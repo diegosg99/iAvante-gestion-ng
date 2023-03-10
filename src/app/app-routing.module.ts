@@ -11,7 +11,7 @@ const routes:Routes=[
     component: UserComponent
   },
   {
-    path:'documentation/:dni',
+    path:'documentation/:dni/:course',
     component: DocumentationComponent
   },
   {

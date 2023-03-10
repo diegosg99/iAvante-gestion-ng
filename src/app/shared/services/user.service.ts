@@ -36,6 +36,9 @@ export class UserService {
     updateUser(user: any) {
       return this.httpService.put < any > (this.apiURL + 'student/update',user)
     }
+    getCourseDocumentation(courseCode:string|null) {
+      return this.httpService.get < string > (this.apiURL + 'course/documentation/'+courseCode);
+    }
 
     errorHandler(error: {
       error: {

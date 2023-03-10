@@ -2,7 +2,7 @@
     <div class="section">
       <h4 class="w-75 mx-auto">Selecciona el curso:</h4>
       <div class="form-group w-75 mx-auto">
-              <select class="form-control" id="select-curso" (change)="showCourseUsers($event)">
+              <select class="form-control" id="select-curso" #selectCourse (change)="showCourseUsers($event)">
                     <option>Seleccionar curso...</option>
                     <option *ngFor="let course of courses"
                           [value]="course.code">
@@ -64,7 +64,7 @@
         <br>
         <div class="row">
           <div class="col-md-3"></div>
-            <button type="submit" [routerLink]="['/documentation',userForm.value.dni]" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col-md-6 btn btn-primary" id="submitForm" (click)="updateUser()">Siguiente</button>
+            <button type="submit" [routerLink]="['/documentation',userForm.value.dni,selectCourse.value]" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col-md-6 btn btn-primary" id="submitForm" (click)="updateUser()">Siguiente</button>
         </div>
       </form>
   </div>

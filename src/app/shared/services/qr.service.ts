@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class QRService {
     
     private apiURL:string = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=';
     httpOptions = {

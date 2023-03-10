@@ -17,6 +17,7 @@ import { DocumentationComponent } from './views/documentation/documentation.comp
 import { TicketsComponent } from './views/tickets/tickets.component';
 import { SurveyComponent } from './views/survey/survey.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import { QRService } from './shared/services/qr.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [UserService,CourseService],
+  providers: [UserService,CourseService,QRService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
