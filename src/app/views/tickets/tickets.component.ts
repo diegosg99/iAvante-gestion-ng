@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 export class TicketsComponent {
 
   dni:string|null;
+  courseUrl:string="";
+  courseQR:any;
 
   constructor(private route: ActivatedRoute){
     this.dni = "";

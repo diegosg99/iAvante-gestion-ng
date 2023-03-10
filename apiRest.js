@@ -119,25 +119,7 @@ app.post('/courses/uploadExcel',(req,res) => {
 //...
 
     data.forEach(item =>{
-      let sql = `INSERT INTO cursos VALUES ('${item.code}',
-                  '${item.name}',
-                  '${item.start}',
-                  '${item.end}',
-                  '${item.preStart}',
-                  '${item.preEnd}',
-                  '${item.endDate}',
-                  '${item.place}',
-                  '${item.province}',
-                  '${item.solicitudes}',
-                  '${item.enrollments}',
-                  '${item.realized}',
-                  '${item.passed}',
-                  '${item.acreditation}',
-                  '${item.expedientNum}',
-                  '${item.creditNum}',
-                  '${item.daysToClose}',
-                  '${item.closeState}') IF NOT IN (select code from cursos where code='${item.code}');`;
-    
+      let sql = `INSERT INTO cursos VALUES ('${item.id}','${item.code}','${item.name}','${item.tutor}','${item.room}','${item.day}','${item.documentation}')`;
 
     connection.query(sql, function(err, rows, fields) {
         if (err) throw err;

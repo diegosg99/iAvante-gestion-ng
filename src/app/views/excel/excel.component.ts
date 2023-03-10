@@ -84,7 +84,7 @@ export class ExcelComponent implements OnInit {
         .then(
           rows => {
             this.data = this.processData(rows,this.docType);
-//            console.log(this.data);
+            console.log(this.data);
           })
     }
   }
@@ -92,28 +92,16 @@ export class ExcelComponent implements OnInit {
     if (this.tableCourse) {
       try {
       return this.data = rows.map((row:Excel.Row | any,index:number): Course | undefined => {
-                  if (index === 1 || index === 3){
+                  if (index === 1){
                       return;
                   }
           return new Course({
             code: row[1]?row[1]:null,
             name: row[2]?row[2]:null,
-            start: row[3]?row[3].toString():null,
-            end: row[4]?row[4].toString():null,
-            preStart: row[5]?row[5].toString():null,
-            preEnd: row[6]?row[6].toString():null,
-            endDate: row[7]?row[7].toString():null,
-            place: row[8]?row[8]:null,
-            province: row[9]?row[9]:null,
-            solicitudes: row[10]?row[10]:null,
-            enrollments: row[11]?row[11]:null,
-            realized: row[12]?row[12]:null,
-            passed: row[13]?row[13]:null,
-            acreditation: row[14]?row[14]:null,
-            expedientNum: row[15]?row[15]:null,
-            creditNum: row[16]?row[16]:null,
-            daysToClose: row[17]?row[17]:null,
-            closeState: row[18]?row[18]:null
+            tutor: row[3]?row[3]:null,
+            room: row[4]?row[4]:null,
+            day: row[5]?row[5].toString():null,
+            documentation: row[6]?row[6]:null
           })
         }).filter(this.isUndefined);
       } catch (error) {
