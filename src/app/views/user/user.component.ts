@@ -52,7 +52,7 @@ export class UserComponent implements OnInit {
     });
   }
   updateUser () { // TODO
-    this.userService.updateUser(this.userForm.value).subscribe(data=>{this.sendForm()});
+    this.userService.updateUser(this.userForm.value).subscribe(data=>{});
     
   }
   showUser(e: any) {
@@ -65,7 +65,6 @@ export class UserComponent implements OnInit {
 
       let formUser = data.rows[0];
       this.dni = formUser.dni;
-      console.log(this.dni);
       this.userForm.setValue({
         'dni':dni,
         'name':formUser.name,

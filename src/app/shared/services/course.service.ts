@@ -39,7 +39,7 @@ export class CourseService {
 
     ngOnInit() {
         this.courses = this.getCourses();
-        this.courses.subscribe((curso: any) => console.log(curso));
+        this.courses.subscribe((curso: any) =>  {});
     }
 
     getCourses(): Observable < Course[] > {
@@ -51,7 +51,6 @@ export class CourseService {
     }
 
     uploadCoursesFromExcel (courses: Array<Course>): Observable < Course[] > | any {
-        console.log(courses);
-        return this.httpService.post < Course[] >  (this.apiURL + 'courses/uploadExcel', courses).subscribe(console.log)//, this.httpOptions).pipe(catchError(this.errorHandler))
+        return this.httpService.post < Course[] >  (this.apiURL + 'courses/uploadExcel', courses).subscribe()//, this.httpOptions).pipe(catchError(this.errorHandler))
     }
 } 

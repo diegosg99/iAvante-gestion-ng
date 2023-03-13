@@ -84,7 +84,6 @@ export class ExcelComponent implements OnInit {
         .then(
           rows => {
             this.data = this.processData(rows,this.docType);
-            console.log(this.data);
           })
     }
   }

@@ -86,9 +86,7 @@ app.get('/courses',(req,res) => {
 app.get('/course/documentation/:courseCode',(req,res) => {
   let courseCode = req.params.courseCode;
   try{
-      let sql = `SELECT documentationUrl
-      FROM cursos
-      WHERE code = ${courseCode}`;
+      let sql = `SELECT documentationUrl FROM cursos WHERE code = '${courseCode}';`;
       connection.query(sql, function(err, rows, fields) {
           if (err) throw err;
           res.status(200).send({rows});

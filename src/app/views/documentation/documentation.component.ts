@@ -12,6 +12,8 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class DocumentationComponent {
   dni:string|null;
   course:string|null;
+  imgDocumentation:string = "../../../assets/images/minimal-qr.svg";
+
   
   constructor(
     private route: ActivatedRoute,
@@ -22,13 +24,21 @@ export class DocumentationComponent {
       this.course = "";
   }
   ngOnInit() {
+    this.getQR();
+  }
+  getQR() {
     let documentUrl = "";
     this.dni = this.route.snapshot.paramMap.get('dni');
     this.course = this.route.snapshot.paramMap.get('course');
     this.userService.getCourseDocumentation(this.course).subscribe(url=>{
-      documentUrl = url;
-    });
-    this.QRservice.getQR(documentUrl).subscribe(console.log);
+      documentUrl = url.rows[0].documentationUrl;
+      this.QRservice.getQR(documentUrl).subscribe(data => {
+        console.log(data);
+        this.imgDocumentation = data.url;
+        console.log(this.imgDocumentation);
 
+      });
+    });
+    
   }
 }

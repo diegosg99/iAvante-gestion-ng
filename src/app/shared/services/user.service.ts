@@ -21,7 +21,7 @@ export class UserService {
 
     ngOnInit() {
         this.users = this.getUsers();
-        this.users.subscribe((user:any) => console.log(user));    
+        this.users.subscribe((user:any) => {});    
     }
 
     getUsers(): Observable < User[] > {
@@ -36,8 +36,8 @@ export class UserService {
     updateUser(user: any) {
       return this.httpService.put < any > (this.apiURL + 'student/update',user)
     }
-    getCourseDocumentation(courseCode:string|null) {
-      return this.httpService.get < string > (this.apiURL + 'course/documentation/'+courseCode);
+    getCourseDocumentation(courseCode:any|null) {
+      return this.httpService.get < any > (this.apiURL + 'course/documentation/'+courseCode)
     }
 
     errorHandler(error: {
