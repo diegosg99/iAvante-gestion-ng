@@ -13,8 +13,8 @@ export class QRService {
     private apiURL:string = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=';
     httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'blob'
-      })
+        'Content-Type': 'application/json'
+        })
     }
 
     constructor (private httpService:HttpClient) {

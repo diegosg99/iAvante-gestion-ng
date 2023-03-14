@@ -115,7 +115,7 @@ app.put('/student/update',(req,res) => {
 
     connection.query(sql, function(err, rows, fields) {
         if (err) throw err;
-        res.status(200).send("exito");
+        res.status(200).send(data);
         });
   }catch(error) {
     res.status(400).send(req);
