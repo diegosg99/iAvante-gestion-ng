@@ -8,15 +8,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SurveyComponent {
 
-  dni:string|null;
+  dni:string|null = "";
+  course:string|null = "";
 
   constructor(private route: ActivatedRoute){
-    this.dni = "";
   }
   
   ngOnInit(){
     this.dni = this.route.snapshot.paramMap.get('dni');
-  }
+    this.course = this.route.snapshot.paramMap.get('course');  }
   showData(range:HTMLInputElement) {
     return range.value;
   }

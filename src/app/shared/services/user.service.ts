@@ -21,7 +21,7 @@ export class UserService {
 
     ngOnInit() {
         this.users = this.getUsers();
-        this.users.subscribe((user:any) => console.log(user));    
+        this.users.subscribe((user:any) => {});    
     }
 
     getUsers(): Observable < User[] > {
@@ -34,7 +34,10 @@ export class UserService {
         return this.httpService.post < User > (this.apiURL + 'student/', JSON.stringify(user), this.httpOptions)
     }
     updateUser(user: any) {
-      return this.httpService.put < any > (this.apiURL + 'student/update',user)
+      return this.httpService.put < any > (this.apiURL + 'student/update',user);
+    }
+    getCourseDocumentation(courseCode:any|null) {
+      return this.httpService.get < any > (this.apiURL + 'course/documentation/'+courseCode)
     }
 
     errorHandler(error: {
@@ -49,5 +52,11 @@ export class UserService {
           errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
       }
       return throwError(errorMessage);
+  }
+  uploadStudentsFromExcel() {
+
+  }
+  uploadDocentsFromExcel() {
+    
   }
 } 

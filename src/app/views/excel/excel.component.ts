@@ -1,32 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-//import * as path from 'path';
-//ng import * as Excel from 'exceljs';
+import { CourseDto,Course } from 'src/app/shared/models/course.model';
+import  * as Excel from 'exceljs'
+import { ArrayType } from '@angular/compiler';
+import { CourseService } from 'src/app/shared/services/course.service';
+import { UserService } from 'src/app/shared/services/user.service';
+
 
 declare var window:any;
-//const filePath = path.resolve(__dirname, 'olympic-hockey-player.xlsx');
-
-// type Team = 'M' | 'W';
-// type Country = 'Canada' | 'USA';
-// type Position = 'Goalie' | 'Defence' | 'Forward';
-
-// type User = {
-//   id: number;
-//   team: Team;
-//   country: Country;
-//   firstName: string;
-//   lastName: string;
-//   weight: number;
-//   height: number;
-//   dateOfBirth: string; // (YYY-MM-DD)
-//   hometown: string;
-//   province: string;
-//   position: Position;
-//   age: number;
-//   heightFt: number;
-//   htln: number;
-//   bmi: number;
-  
-// };
 
 @Component({
   selector: 'app-excel',
@@ -34,64 +14,117 @@ declare var window:any;
   styleUrls: ['./excel.component.css']
 })
 
+//------------------------------------------- CLASS ------------------------------------------
+
 export class ExcelComponent implements OnInit {
 
   formModal:any;
   file:any;
+  e:Event | any;
+  data: any;
+
+  courseservice: CourseService;
+  userService: UserService;
+
+  docType:string="";
+
+  tableCourse: boolean = false;
+  tableStudents: boolean = false;
+  tableDocents: boolean = false;
+
+  constructor(courseService:CourseService,userService:UserService){
+    this.courseservice = courseService;
+    this.userService = userService;
+  }
 
   ngOnInit(): void {
     this.formModal = new window.bootstrap.Modal(
       this.file = document.getElementById("importExcel")
     )
   }
+
+  setDocType(docType:string) {
+    this.docType = docType;
+    this.tableCourse = (this.docType === 'cursos') ? true : false;
+    this.tableStudents = (this.docType === 'alumnos') ? true : false;
+    this.tableDocents = (this.docType === 'docentes') ? true : false;
+  }
+
+//------------------------------------------- DOM ------------------------------------------
+
   openModal() {
     this.formModal.show();
   }
   closeModal() {
     this.formModal.hide();
   }
-  importar = async () => {
-    // const workbook = new Excel.Workbook();
-    // const content = await workbook.xlsx.readFile(this.file);
-  
-    // const worksheet = content.worksheets[1];
-    // const rowStartIndex = 4;
-    // const numberOfRows = worksheet.rowCount - 3;
-  
-    // const rows = worksheet.getRows(rowStartIndex, numberOfRows) ?? [];
-  
-    // const players = rows.map((row): User => {
-    //   return {
-    //     // @ts-ignore
-    //     id: this.getCellValue(row,1),
-    //     // @ts-ignore
-    //     team: this.getCellValue(row, 2),
-    //     // @ts-ignore
-    //     country: this.getCellValue(row, 3),
-    //     firstName: this.getCellValue(row, 4),
-    //     lastName: this.getCellValue(row, 5),
-    //     // @ts-ignore
-    //     weight: this.getCellValue(row, 6),
-    //     height: +this.getCellValue(row, 7),
-    //     dateOfBirth: this.getCellValue(row, 8), // (YYY-MM-DD)
-    //     hometown: this.getCellValue(row, 9),
-    //     province: this.getCellValue(row, 10),
-    //     // @ts-ignore
-    //     position: this.getCellValue(row, 11),
-    //     age: +this.getCellValue(row, 12),
-    //     heightFt: +this.getCellValue(row, 13),
-    //     htln: +this.getCellValue(row, 14),
-    //     bmi: +this.getCellValue(row, 15),
-    //   }
-    // });
-  
-    // console.log(players);
-  };
-  // getCellValue = (row:  Excel.Row, cellIndex: number) => {
-  //   const cell = row.getCell(cellIndex);
-    
-  //   return cell.value ? cell.value.toString() : '';
-  // };
-}
 
-//importar().then();
+//------------------------------------------- EXCEL ------------------------------------------
+
+  loadFile(e:Event|any) {
+    this.file = e.target.files[0];
+  }
+  convert = async () => {
+    let reader = new FileReader();
+    let rows:Array<any> = [];
+
+    reader.readAsArrayBuffer(this.file);
+    reader.onload = () => {
+
+      const buffer:any = reader.result;
+      const wb = new Excel.Workbook();
+
+      wb.xlsx.load(buffer)
+      .then(workbook => {
+
+        let sheet = workbook.worksheets[0];
+        sheet.eachRow((row,i) => { rows[i] = (row.values) })
+
+        return rows;})
+        .then(
+          rows => {
+            this.data = this.processData(rows,this.docType);
+          })
+    }
+  }
+  processData = (rows:any,docType:string) => {
+    if (this.tableCourse) {
+      try {
+      return this.data = rows.map((row:Excel.Row | any,index:number): Course | undefined => {
+                  if (index === 1){
+                      return;
+                  }
+          return new Course({
+            code: row[1]?row[1]:null,
+            name: row[2]?row[2]:null,
+            tutor: row[3]?row[3]:null,
+            room: row[4]?row[4]:null,
+            day: row[5]?row[5].toString():null,
+            documentation: row[6]?row[6]:null
+          })
+        }).filter(this.isUndefined);
+      } catch (error) {
+        console.log(error);
+        return
+      };
+    }
+
+    if (this.tableDocents) {
+    }
+    if (this.tableStudents) {
+    }
+    return this.data;
+  }
+  isUndefined = (item: Course | undefined): item is Course => { return !!item }
+
+  async importar(){
+
+    const manager: {[key in string]: () => void} = {
+      cursos: (): void => { this.courseservice.uploadCoursesFromExcel(this.data) },
+      alumnos: (): void => { this.userService.uploadStudentsFromExcel() },
+      docentes: (): void => { this.userService.uploadDocentsFromExcel() },
+    };
+
+    await manager[this.docType]();
+  }
+}

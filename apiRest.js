@@ -19,7 +19,7 @@ connection.connect();
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({limit: '500mb'}));
 
 app.get('/courses/name',(req,res) => {
     try{
@@ -83,6 +83,19 @@ app.get('/courses',(req,res) => {
   }
 })
 
+app.get('/course/documentation/:courseCode',(req,res) => {
+  let courseCode = req.params.courseCode;
+  try{
+      let sql = `SELECT documentationUrl FROM cursos WHERE code = '${courseCode}';`;
+      connection.query(sql, function(err, rows, fields) {
+          if (err) throw err;
+          res.status(200).send({rows});
+          });
+  }catch(error){
+      res.status(400).send({msg:"Error"});
+  }
+})
+
 app.put('/student/update',(req,res) => {
   try{
     let data = req.body;
@@ -102,8 +115,30 @@ app.put('/student/update',(req,res) => {
 
     connection.query(sql, function(err, rows, fields) {
         if (err) throw err;
+        res.status(200).send(data);
+        });
+  }catch(error) {
+    res.status(400).send(req);
+  }
+})
+
+app.post('/courses/uploadExcel',(req,res) => {
+  try{
+    let data = req.body;
+
+//IF NOT EXISTS (select code from cursos where code='${item.code}')
+//...
+//BEGIN
+//...
+
+    data.forEach(item =>{
+      let sql = `INSERT INTO cursos VALUES ('${item.id}','${item.code}','${item.name}','${item.tutor}','${item.room}','${item.day}','${item.documentation}')`;
+
+    connection.query(sql, function(err, rows, fields) {
+        if (err) throw err;
         res.status(200).send("exito");
         });
+    })
   }catch(error) {
     res.status(400).send(req);
   }

@@ -52,7 +52,9 @@ export class UserComponent implements OnInit {
     });
   }
   updateUser () { // TODO
-    this.userService.updateUser(this.userForm.value).subscribe(data=>{this.sendForm()});
+    let user = this.userForm.value;
+    user.rights = true?1:0;
+    this.userService.updateUser(user).subscribe();
     
   }
   showUser(e: any) {
@@ -65,7 +67,6 @@ export class UserComponent implements OnInit {
 
       let formUser = data.rows[0];
       this.dni = formUser.dni;
-      console.log(this.dni);
       this.userForm.setValue({
         'dni':dni,
         'name':formUser.name,
@@ -79,6 +80,7 @@ export class UserComponent implements OnInit {
     })
   }
   showCourseUsers(e:Event|any) {
+    
     this.courseService.getCourseUsers(e.target.value).subscribe((data: any)=> {
         this.users = data.rows;
     });

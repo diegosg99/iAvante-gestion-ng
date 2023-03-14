@@ -11,19 +11,24 @@ const routes:Routes=[
     component: UserComponent
   },
   {
-    path:'documentation/:dni',
+    path:'documentation/:dni/:course',
     component: DocumentationComponent
   },
   {
-    path:'tickets/:dni',
+    path:'tickets/:dni/:course',
     component: TicketsComponent
   },
   {
-    path:'survey/:dni',
+    path:'survey/:dni/:course',
     component: SurveyComponent
   },
   { 
     path: '**',
+    component: PageNotFoundComponent 
+  }
+  ,
+  { 
+    path: '**/**',
     component: PageNotFoundComponent 
   }
 ];

@@ -8,14 +8,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TicketsComponent {
 
-  dni:string|null;
+  dni:string|null = "";
+  course:string|null = "";
+  courseUrl:string="";
+  courseQR:any;
 
   constructor(private route: ActivatedRoute){
-    this.dni = "";
   }
 
 
   ngOnInit() {
     this.dni = this.route.snapshot.paramMap.get('dni');
+    this.course = this.route.snapshot.paramMap.get('course');
   }
 }
