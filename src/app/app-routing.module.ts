@@ -15,15 +15,20 @@ const routes:Routes=[
     component: DocumentationComponent
   },
   {
-    path:'tickets/:dni',
+    path:'tickets/:dni/:course',
     component: TicketsComponent
   },
   {
-    path:'survey/:dni',
+    path:'survey/:dni/:course',
     component: SurveyComponent
   },
   { 
     path: '**',
+    component: PageNotFoundComponent 
+  }
+  ,
+  { 
+    path: '**/**',
     component: PageNotFoundComponent 
   }
 ];
