@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserDto } from 'src/app/shared/models/user.model';
-import { QRService } from 'src/app/shared/services/qr.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -12,19 +11,18 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class DocumentationComponent {
   dni:string|null;
   course:string|null;
-  imgDocumentation:string = "../../../assets/images/minimal-qr.svg";
+  imgDocumentation:string = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=";
 
   
   constructor(
     private route: ActivatedRoute,
-    private QRservice: QRService,
     private userService: UserService
     ) {
       this.dni = "";
       this.course = "";
   }
   ngOnInit() {
-    this.getQR();
+    this.getQR();//TODO: Si quieres que se genera al pulsar un boton quita esto e inserta el boton comentado en el html
   }
   getQR() {
     let documentUrl = "";
@@ -32,12 +30,7 @@ export class DocumentationComponent {
     this.course = this.route.snapshot.paramMap.get('course');
     this.userService.getCourseDocumentation(this.course).subscribe(url=>{
       documentUrl = url.rows[0].documentationUrl;
-      this.QRservice.getQR(documentUrl).subscribe(data => {
-        console.log(data);
-        this.imgDocumentation = data.url;
-        console.log(this.imgDocumentation);
-
-      });
+      this.imgDocumentation += documentUrl;
     });
     
   }

@@ -79,7 +79,8 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "iAvante-gestion-ng:build"
+            "browserTarget": "iAvante-gestion-ng:build",
+            "proxyConfig": "src/proxy.conf.json"
           }
         },
         "test": {
