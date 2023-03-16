@@ -1,0 +1,24 @@
+Lista de TODO's para dejar la aplicación nike:
+
+- Refactoring general
+- Pulir ExcelService y que no falle en ningun dato, controlando tambien errores que puedan surgir
+- Hacer los modelos de alumnos y profesores segun lo pedido
+- Controlar errores en formularios y QR
+- Poner seguridad en la aplicación
+- Poner cada parte de la página bonita y con lo que Armando diga
+- Hacer preguntas correctas en la encuesta de satisfacción y saber enlazar tras el curso. (O hacerlo en una página separada)
+
+
+
+Para otras Apps: 
+
+En el admin panel estará:
+- Gestion de acceso de alumnos
+- Página que solo sea un cuestionario de satisfacción
+- Página de gestión de inventario
+- ... (Más ocurrencias)
+- Página promocional de iAvante y su app de escenarios
+
+Mejoras a parte: 
+
+- Desde el panel de admin se podrían mandar los mensajes de teléfono a alumnos
