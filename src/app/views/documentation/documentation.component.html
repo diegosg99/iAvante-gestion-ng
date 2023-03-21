@@ -1,11 +1,10 @@
-<div class="mx-0 mx-sm-auto mt-4 light-green-bg card">
+<div class="mx-0 mx-sm-auto mt-4 light-green-bg card m-3">
     <h1 class="p-3">Documentación del curso:</h1>
     <div class="container card-text">
 
         <hr class="hr hr-blurry" />    
         <div class="row">
             <h5>Puedes descargar la Documentación del curso escaneando el código QR de abajo: </h5>
-            <!-- <button class="btn btn-light col-2"  (click)="getQR()">Generar QR</button> -->
         </div>
         <div class="row p-3">
             <div class="col"></div>
@@ -14,13 +13,33 @@
             </div>
             <div class="col"></div>
         </div>
+        <hr class="hr hr-blurry" />    
+
+        <div class="section">      
+            <div class="form-group" style="margin-bottom: 0px;">
+                <h4 class="p-3">Ya puedes pasar al curso:</h4>
+                  <div class="row">
+                        <div class="col-12 row">
+                            <div class="col-3"></div>
+                            <h4 class="col-md-6 text-center">Aula</h4>
+                            <div class="col-3"></div>
+                        </div>
+
+                        <div class="row col-12">
+                            <div class="col-3"></div>
+                            <h5 class="col-md-6 text-center">25</h5>
+                            <div class="col-3"></div>
+                        </div>
+                  </div> 
+            </div>
+          </div>
 
         <hr class="hr hr-blurry" />    
         <div class="row" style="margin-bottom:1em;">
             <div class="col-4">
                 <button routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col-md-6 btn btn-light">Volver</button>
             </div>
-            <button class="btn btn-primary col" [routerLink]="['/tickets',dni,course]" routerLinkActive="active" ariaCurrentWhenActive="page">Entrar al curso</button>
+            <button class="btn btn-primary col" [routerLink]="['/survey',dni,course]" routerLinkActive="active" ariaCurrentWhenActive="page">Entrar al curso</button>
             <div class="col-4"></div>
         </div>
     </div>
