@@ -73,13 +73,13 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-4"></div>
-          <div class="col-4">
+          <div class="col-lg-4 col-sm-0 col-xs-0"></div>
+          <div class="col-lg-4 col-sm-4 col-xs-4">
             <button type="submit" ariaCurrentWhenActive="page"  class="col btn btn-primary" id="submitForm" [disabled]="!userForm.valid || selectAlumno.value==='Seleccionar alumno...'" (click)="updateUser()">Acceder al curso</button><!--[routerLink]="['/documentation',userForm.value.dni,selectCourse.value]" routerLinkActive="active"-->
           </div>  
-          <div class="col-1"></div>
-          <div class="col-3">
-            <button type="submit" [routerLink]="['/survey',userForm.value.dni,selectCourse.value]" [disabled]="!userForm.valid || selectAlumno.value==='Seleccionar alumno...'" routerLinkActive="active" ariaCurrentWhenActive="page"  class="btn btn-light" id="submitForm">Valorar el curso</button>
+          <div class="col-lg-1 col-sm-4 col-xs-4"></div>
+          <div class="col-lg-3 col-sm-4 col-xs-4">
+            <button type="submit" [routerLink]="['/survey',userForm.value.dni,selectCourse.value]" [disabled]="!userForm.valid || selectAlumno.value==='Seleccionar alumno...'" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col btn btn-light" id="submitForm">Valorar el curso</button>
 
           </div>
         </div>
