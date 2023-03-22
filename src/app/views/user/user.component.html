@@ -24,30 +24,39 @@
     </div>
     <hr class="hr hr-blurry" />
     <form id="studentForm" [formGroup]="userForm" (ngSubmit)="updateUser()">
-    <h4 class="w-75 mx-auto">Rellene los siguientes datos</h4>
+    <h4 class="w-75 mx-auto">Compruebe los siguientes datos</h4>
         <div class="form-group w-75 mx-auto">
             <label for="userDni">DNI:</label>
             <input type="text" class="form-control" id="userDni" placeholder="DNI" formControlName="dni">
-            <small class="form-text text-muted">Nunca compartiremos tus datos.</small>
-        </div>
+            <small class="text-danger" *ngIf="userForm.get('dni')?.invalid">Campo inválido.</small>
+            <!-- <small class="text-danger" *ngIf="userForm.get('dni')?.hasError('required')">Campo vacío.</small> -->
+            </div>
         <div class="form-group row w-75 mx-auto">
           <div class="col">
             <label for="userName">Nombre:</label>
             <input type="text" class="form-control" id="userName" placeholder="Nombre" formControlName="name">
+            <small class="text-danger" *ngIf="userForm.get('name')?.invalid">Campo inválido.</small>
+
           </div>
           <div class="col">
             <label for="userSurname">Apellidos:</label>
             <input type="text" class="form-control" id="userSurname" placeholder="Apellidos" formControlName="surname">  
+            <small class="text-danger" *ngIf="userForm.get('surname')?.invalid">Campo inválido.</small>
+
           </div>
         </div>
         <div class="form-group row w-75 mx-auto">
           <div class="col-md-8">
             <label for="userEmail">Email:</label>
             <input type="text" class="form-control" id="userEmail" placeholder="Email" formControlName="email">
+            <small class="text-danger" *ngIf="userForm.get('email')?.invalid">Campo inválido.</small>
+
           </div>
           <div class="col-md-4">
             <label for="userPhone">Teléfono:</label>
             <input type="text" class="form-control" id="userPhone" placeholder="Teléfono" formControlName="phone">
+            <small class="text-danger" *ngIf="userForm.get('phone')?.invalid">Campo inválido.</small>
+
           </div>
           </div>
           <div class="form-group w-75 mx-auto">
@@ -59,13 +68,20 @@
             <input type="checkbox" class="form-check-input" id="userRights" formControlName="rights" required>
             <label class="form-check-label" for="userRights">Acepto</label>
             <small class="form-text text-muted">Al hacer click aceptas que usemos tus <a class="link-primary" href="https://asesorias.com/empresas/wp-content/uploads/2020/01/Modelo-contrato-cesion-derechos-imagen.png">derechos</a> de imagen y gestionar tus datos.</small>
-            </div>
+            <small class="text-danger" *ngIf="userForm.get('rights')?.invalid">Campo inválido.</small>
+          </div>
         </div>
         <br>
         <div class="row">
           <div class="col-4"></div>
-            <button type="submit" [routerLink]="['/documentation',userForm.value.dni,selectCourse.value]" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col-4 btn btn-primary" id="submitForm" (click)="updateUser()">Siguiente</button>
-            <div class="col-4"></div>  
+          <div class="col-4">
+            <button type="submit" ariaCurrentWhenActive="page"  class="col btn btn-primary" id="submitForm" (click)="updateUser()">Siguiente</button><!--[routerLink]="['/documentation',userForm.value.dni,selectCourse.value]" routerLinkActive="active"-->
+          </div>  
+          <div class="col-1"></div>
+          <div class="col-3">
+            <button type="submit" [routerLink]="['/survey',userForm.value.dni,selectCourse.value]" routerLinkActive="active" ariaCurrentWhenActive="page"  class="btn btn-light" id="submitForm">Valorar el curso</button>
+
+          </div>
         </div>
       </form>
   </div>

@@ -1,5 +1,5 @@
 import { Component,EventEmitter,OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User,UserDto } from 'src/app/shared/models/user.model';
 import { CourseService } from 'src/app/shared/services/course.service';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -23,18 +23,29 @@ export class UserComponent implements OnInit {
     constructor(
       private userService: UserService,
       private route: ActivatedRoute,
+      private router: Router,
       private courseService:CourseService
     ){
       this.dni = "";
       this.courses = this.courseService.getCourses();
       this.userForm = new FormGroup({
-        dni: new FormControl(),
-        name: new FormControl(),
-        surname: new FormControl(),
-        email: new FormControl(),
-        phone: new FormControl(),
+        dni: new FormControl("",Validators.compose(
+          [ Validators.maxLength(9), Validators.minLength(9),Validators.pattern('[0-9]{8}[A-Z]{1}')]
+       )),
+        name: new FormControl("",Validators.compose(
+          [ Validators.maxLength(30), Validators.minLength(1)]
+       )),
+        surname: new FormControl("",Validators.compose(
+          [ Validators.maxLength(100), Validators.minLength(1)]
+       )),
+        email: new FormControl("",Validators.compose(
+          [ Validators.maxLength(200), Validators.minLength(1),Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]
+       )),
+        phone: new FormControl("",Validators.compose(
+          [ Validators.maxLength(9), Validators.minLength(9),Validators.pattern('[0-9]{9}')]
+       )),
         details: new FormControl(),
-        rights: new FormControl(),
+        rights: new FormControl("",Validators.requiredTrue),
       });
 
   }
@@ -55,6 +66,7 @@ export class UserComponent implements OnInit {
     let user = this.userForm.value;
     user.rights = true?1:0;
     this.userService.updateUser(user).subscribe();
+    this.router.navigateByUrl('documentation')
     
   }
   showUser(e: any) {

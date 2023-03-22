@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserDto } from 'src/app/shared/models/user.model';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -11,6 +11,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class DocumentationComponent {
   dni:string|null;
   course:string|null;
+  room: number;
   imgDocumentation:string = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=";
 
   
@@ -20,9 +21,11 @@ export class DocumentationComponent {
     ) {
       this.dni = "";
       this.course = "";
+      this.room = 0
   }
   ngOnInit() {
-    this.getQR();//TODO: Si quieres que se genera al pulsar un boton quita esto e inserta el boton comentado en el html
+    this.getQR();
+    this.getCourseRoom();
   }
   getQR() {
     let documentUrl = "";
@@ -33,5 +36,11 @@ export class DocumentationComponent {
       this.imgDocumentation += documentUrl;
     });
     
+  }
+  getCourseRoom() {
+    let courseCode = this.route.snapshot.params['course'];
+    this.userService.getCourseRoom(courseCode).subscribe(item =>{
+        this.room = item.rows[0].room}
+        );
   }
 }

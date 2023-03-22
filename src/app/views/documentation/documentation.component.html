@@ -27,7 +27,7 @@
 
                         <div class="row col-12">
                             <div class="col-3"></div>
-                            <h5 class="col-md-6 text-center">25</h5>
+                            <h5 class="col-md-6 text-center">{{room}}</h5>
                             <div class="col-3"></div>
                         </div>
                   </div> 
@@ -39,7 +39,8 @@
             <div class="col-4">
                 <button routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col-md-6 btn btn-light">Volver</button>
             </div>
-            <button class="btn btn-primary col" [routerLink]="['/survey',dni,course]" routerLinkActive="active" ariaCurrentWhenActive="page">Entrar al curso</button>
+            <button class="btn btn-primary col-4" [routerLink]="['/end-form',dni]" routerLinkActive="active" ariaCurrentWhenActive="page">Entrar al curso</button>
+            
             <div class="col-4"></div>
         </div>
     </div>

@@ -39,6 +39,9 @@ export class UserService {
     getCourseDocumentation(courseCode:any|null) {
       return this.httpService.get < any > (this.apiURL + 'course/documentation/'+courseCode)
     }
+    getCourseRoom(courseCode:any|null) {
+      return this.httpService.get < any > (this.apiURL + 'course/room/'+courseCode)
+    }
 
     errorHandler(error: {
       error: {
