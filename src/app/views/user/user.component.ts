@@ -17,6 +17,7 @@ export class UserComponent implements OnInit {
   public users:any;
   public courses:any;
   public dni:string;
+  public selectedCourse:string = "";
   
   public userForm: FormGroup;
 
@@ -45,7 +46,7 @@ export class UserComponent implements OnInit {
           [ Validators.maxLength(9), Validators.minLength(9),Validators.pattern('[0-9]{9}')]
        )),
         details: new FormControl(),
-        rights: new FormControl("",Validators.requiredTrue),
+        rights: new FormControl(true,Validators.requiredTrue),
       });
 
   }
@@ -66,7 +67,7 @@ export class UserComponent implements OnInit {
     let user = this.userForm.value;
     user.rights = true?1:0;
     this.userService.updateUser(user).subscribe();
-    this.router.navigateByUrl('documentation')
+    this.router.navigateByUrl('documentation/'+this.userForm.value.dni+"/"+this.selectedCourse)
     
   }
   showUser(e: any) {
@@ -92,7 +93,7 @@ export class UserComponent implements OnInit {
     })
   }
   showCourseUsers(e:Event|any) {
-    
+    this.selectedCourse = e.target.value
     this.courseService.getCourseUsers(e.target.value).subscribe((data: any)=> {
         this.users = data.rows;
     });
