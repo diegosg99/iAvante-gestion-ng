@@ -14,7 +14,6 @@ import { RouterModule, Routes, UrlSegment } from '@angular/router';
 import { CourseService } from './shared/services/course.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DocumentationComponent } from './views/documentation/documentation.component';
-import { TicketsComponent } from './views/tickets/tickets.component';
 import { SurveyComponent } from './views/survey/survey.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { QRService } from './shared/services/qr.service';
@@ -27,7 +26,6 @@ import { QRService } from './shared/services/qr.service';
     FooterComponent,
     ExcelComponent,
     DocumentationComponent,
-    TicketsComponent,
     SurveyComponent,
     PageNotFoundComponent
   ],

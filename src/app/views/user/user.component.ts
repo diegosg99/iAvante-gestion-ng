@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
     constructor(
       private userService: UserService,
       private route: ActivatedRoute,
-      private router: Router,
+      public router: Router,
       private courseService:CourseService
     ){
       this.dni = "";

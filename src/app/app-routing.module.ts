@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DocumentationComponent } from './views/documentation/documentation.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { SurveyComponent } from './views/survey/survey.component';
-import { TicketsComponent } from './views/tickets/tickets.component';
 import { UserComponent } from './views/user/user.component';
 const routes:Routes=[
   {
@@ -11,12 +10,12 @@ const routes:Routes=[
     component: UserComponent
   },
   {
-    path:'documentation/:dni/:course',
-    component: DocumentationComponent
+    path:'prev-survey',
+    component: UserComponent
   },
   {
-    path:'tickets/:dni/:course',
-    component: TicketsComponent
+    path:'documentation/:dni/:course',
+    component: DocumentationComponent
   },
   {
     path:'survey/:dni/:course',

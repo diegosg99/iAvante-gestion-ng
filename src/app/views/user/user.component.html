@@ -89,16 +89,20 @@
           </div>
         </div>
         <br>
-        <div class="row">
-          <div class="col-lg-4 col-sm-0 col-xs-0"></div>
-          <div class="col-lg-4 col-sm-4 col-xs-4">
-            <button type="submit" ariaCurrentWhenActive="page"  class="col btn btn-primary" id="submitForm" [disabled]="!userForm.valid" (click)="updateUser()">Acceder al curso</button><!--[routerLink]="['/documentation',userForm.value.dni,selectCourse.value]" routerLinkActive="active"-->
-          </div>  
-          <div class="col-lg-1 col-sm-4 col-xs-4"></div>
-          <div class="col-lg-3 col-sm-4 col-xs-4">
-            <button type="submit" [routerLink]="['/survey',userForm.value.dni,selectCourse.value]" [disabled]="!userForm.valid" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col btn btn-light" id="submitForm">Valorar el curso</button>
-
+          <div class="row" *ngIf="this.router.url==='/'">
+            <div class="col-lg-4 col-sm-0 col-xs-0"></div>
+            <div class="col-lg-4 col-sm-4 col-xs-4">
+              <button type="submit" ariaCurrentWhenActive="page"  class="col btn btn-primary" id="submitForm" [disabled]="!userForm.valid" (click)="updateUser()">Acceder al curso</button><!--[routerLink]="['/documentation',userForm.value.dni,selectCourse.value]" routerLinkActive="active"-->
+            </div>  
+            <div class="col-lg-4 col-sm-4 col-xs-4"></div>
           </div>
-        </div>
+
+          <div class="row" *ngIf="this.router.url==='/prev-survey'">
+            <div class="col-lg-4 col-sm-0 col-xs-0"></div>
+            <div class="col-lg-4 col-sm-4 col-xs-4">
+              <button type="submit" [routerLink]="['/survey',userForm.value.dni,selectCourse.value]" [disabled]="!userForm.valid" routerLinkActive="active" ariaCurrentWhenActive="page"  class="col btn btn-primary" id="submitForm">Valorar el curso</button>
+            </div>  
+            <div class="col-lg-4 col-sm-4 col-xs-4"></div>
+          </div>
       </form>
   </div>
