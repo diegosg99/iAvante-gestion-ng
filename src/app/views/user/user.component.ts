@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
   public courses:any;
   public dni:string;
   public selectedCourse:string = "";
+  public userSelected:boolean = false;
   
   public userForm: FormGroup;
 
@@ -70,11 +71,16 @@ export class UserComponent implements OnInit {
     this.router.navigateByUrl('documentation/'+this.userForm.value.dni+"/"+this.selectedCourse)
     
   }
-  showUser(e: any) {
-    if (!e.target.value){return};
-    let dni:any = e.target.value? e.target.value:null;
+  showUser(dni:string) {
+
+    if (dni.length!==9){
+      this.userSelected = false;
+      return
+    };
 
     let user = this.userService.getUser(dni);
+
+    this.userSelected = true;
 
     user.subscribe((data:any) => {
 
@@ -94,8 +100,8 @@ export class UserComponent implements OnInit {
   }
   showCourseUsers(e:Event|any) {
     this.selectedCourse = e.target.value
-    this.courseService.getCourseUsers(e.target.value).subscribe((data: any)=> {
-        this.users = data.rows;
-    });
+    // this.courseService.getCourseUsers(e.target.value).subscribe((data: any)=> {
+    //     this.users = data.rows;
+    // });
   }
 }
