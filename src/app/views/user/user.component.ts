@@ -66,6 +66,7 @@ export class UserComponent implements OnInit {
   }
   updateUser () { // TODO
     let user = this.userForm.value;
+    console.log(user);
     user.rights = true?1:0;
     this.userService.updateUser(user).subscribe();
     this.router.navigateByUrl('documentation/'+this.userForm.value.dni+"/"+this.selectedCourse)
@@ -79,15 +80,13 @@ export class UserComponent implements OnInit {
     };
 
     let user = this.userService.getUser(dni);
-
     this.userSelected = true;
 
     user.subscribe((data:any) => {
-
       let formUser = data.rows[0];
       this.dni = formUser.dni;
       this.userForm.setValue({
-        'dni':dni,
+        'dni':formUser.dni,
         'name':formUser.name,
         'surname': formUser.surname,
         'email': formUser.email,

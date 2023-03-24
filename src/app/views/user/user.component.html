@@ -25,7 +25,7 @@
 
     <div class="form-group w-75 mx-auto">
       <label for="userDni">DNI:</label>
-      <input type="text" class="form-control" id="keyDni" placeholder="DNI" formControlName="dni" #keyworddni>
+      <input type="text" class="form-control" id="keyDni" placeholder="DNI" #keyworddni>
       <small class="text-danger" *ngIf="userForm.get('dni')?.invalid">Campo inválido.</small>
       <!-- <small class="text-danger" *ngIf="userForm.get('dni')?.hasError('required')">Campo vacío.</small> -->
     </div>
