@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DocumentationComponent } from './views/documentation/documentation.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import { SuccessComponent } from './views/success/success.component';
 import { SurveyComponent } from './views/survey/survey.component';
 import { UserComponent } from './views/user/user.component';
 const routes:Routes=[
@@ -20,6 +21,10 @@ const routes:Routes=[
   {
     path:'survey/:dni/:course',
     component: SurveyComponent
+  },
+  {
+    path:'success',
+    component: SuccessComponent
   },
   { 
     path: '**',

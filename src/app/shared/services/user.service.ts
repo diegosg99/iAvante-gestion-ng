@@ -8,7 +8,7 @@ import { map,catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UserService {
-    
+  
     public users:any;
     private apiURL:string = 'http://127.0.0.1:3003/';
     httpOptions = {
@@ -41,6 +41,10 @@ export class UserService {
     }
     getCourseRoom(courseCode:any|null) {
       return this.httpService.get < any > (this.apiURL + 'course/room/'+courseCode)
+    }
+
+    uploadSurvey(survey: any) {
+      return this.httpService.post < any > (this.apiURL + 'upload/survey',(survey));
     }
 
     errorHandler(error: {

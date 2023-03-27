@@ -7,7 +7,6 @@ import { UserComponent } from './views/user/user.component';
 import { UserService } from './shared/services/user.service';
 import { NavbarComponent } from './views/navbar/navbar.component';
 import { FooterComponent } from './views/footer/footer.component';
-import { ExcelComponent } from './views/excel/excel.component';
 import * as bootstrap from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes, UrlSegment } from '@angular/router';
@@ -17,6 +16,7 @@ import { DocumentationComponent } from './views/documentation/documentation.comp
 import { SurveyComponent } from './views/survey/survey.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { QRService } from './shared/services/qr.service';
+import { SuccessComponent } from './views/success/success.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +24,10 @@ import { QRService } from './shared/services/qr.service';
     UserComponent,
     NavbarComponent,
     FooterComponent,
-    ExcelComponent,
     DocumentationComponent,
     SurveyComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,
