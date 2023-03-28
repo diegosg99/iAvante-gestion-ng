@@ -25,28 +25,32 @@ app.use(morgan('dev'));
 
 
             //----------------------BD Alumnos
-const connection = mysql.createConnection({
+const connection = mariadb.createPool({
   host     : '217.160.232.46',
   user     : 'diego',
   password : 'qazqaz123',
   database : 'asistencia'
 });
             //----------------------BD Admin
-const adminDB = mysql.createConnection({
+const adminDB = mariadb.createPool({
   host     : 'localhost',
   user     : 'root',
   password : '',
   database : 'iavante'
 });
 
-connection.connect(err => {
-  err ?console.error('error connecting: ' + err.stack)
-  :console.log('connected as id ' + connection.threadId);
+connection.getConnection(),then(connection => {
+  
+app.use(require('./routes/students.routes'));
+
+app.use(require('./routes/courses.routes'));
+
+app.use(require('./routes/survey.routes'));
+
 });
-adminDB.connect(err => {
-  err ?console.error('error connecting: ' + err.stack)
-      :console.log('connected as id ' + connection.threadId);
-});
+// adminDB.getConnection(conn => {
+
+// });
 
 //--------------------------------------- MIDDLEWARES --------------------------------------
 
@@ -64,13 +68,8 @@ return result;
 
 //--------------------------------------- ROUTES -------------------------------------------
 
-app.use(require('./routes/admins.routes'));
+//app.use(require('./routes/admins.routes'));
 
-app.use(require('./routes/students.routes'));
-
-app.use(require('./routes/courses.routes'));
-
-app.use(require('./routes/survey.routes'));
 
 //-------------------- Start Server ------------------------------------
 app.listen(app.get('port'), () =>
