@@ -39,7 +39,7 @@ const adminDB = mariadb.createPool({
   database : 'iavante'
 });
 
-connection.getConnection(),then(connection => {
+connection.getConnection().then(connection => {
   
 app.use(require('./routes/students.routes'));
 
