@@ -25,14 +25,14 @@ app.use(morgan('dev'));
 
             //----------------------BD Alumnos
 const connection = mysql.createConnection({
-  host     : '217.160.232.46:802',
+  host     : 'localhost',
   user     : 'diego',
   password : 'qazqaz123',
   database : 'asistencia'
 });
             //----------------------BD Admin
 const adminDB = mysql.createConnection({
-  host     : '217.160.232.46:802',
+  host     : 'localhost',
   user     : 'diego',
   password : 'qazqaz123',
   database : 'iavante'
