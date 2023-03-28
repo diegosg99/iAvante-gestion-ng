@@ -7,6 +7,8 @@ const moment = require('moment');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const morgan = require('morgan');
+const mariadb = require('mariadb');
+
 //const {connection,adminDB} = require ('./database');  --------------------> externalizacion de BD pero da error
 
             //---------------------- CONSTS
@@ -23,14 +25,14 @@ app.use(morgan('dev'));
 
 
             //----------------------BD Alumnos
-const connection = mysql.createConnection({
+const connection = mariadb.createPool({
   host     : 'localhost',
   user     : 'root',
   password : '',
   database : 'asistencia'
 });
             //----------------------BD Admin
-const adminDB = mysql.createConnection({
+const adminDB = mariadb.createPool({
   host     : 'localhost',
   user     : 'root',
   password : '',
