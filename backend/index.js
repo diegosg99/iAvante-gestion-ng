@@ -7,7 +7,6 @@ const moment = require('moment');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const morgan = require('morgan');
-const mariadb = require('mariadb');
 
 //const {connection,adminDB} = require ('./database');  --------------------> externalizacion de BD pero da error
 
@@ -25,32 +24,28 @@ app.use(morgan('dev'));
 
 
             //----------------------BD Alumnos
-const connection = mariadb.createPool({
-  host     : '217.160.232.46',
-  user     : 'diego',
-  password : 'qazqaz123',
+const connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '',
   database : 'asistencia'
 });
             //----------------------BD Admin
-const adminDB = mariadb.createPool({
+const adminDB = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '',
   database : 'iavante'
 });
 
-connection.getConnection().then(connection => {
-  
-app.use(require('./routes/students.routes'));
-
-app.use(require('./routes/courses.routes'));
-
-app.use(require('./routes/survey.routes'));
-
+connection.connect(err => {
+  err ?console.error('error connecting: ' + err.stack)
+  :console.log('connected as id ' + connection.threadId);
 });
-// adminDB.getConnection(conn => {
-
-// });
+adminDB.connect(err => {
+  err ?console.error('error connecting: ' + err.stack)
+      :console.log('connected as id ' + connection.threadId);
+});
 
 //--------------------------------------- MIDDLEWARES --------------------------------------
 
@@ -68,8 +63,13 @@ return result;
 
 //--------------------------------------- ROUTES -------------------------------------------
 
-//app.use(require('./routes/admins.routes'));
+app.use(require('./routes/admins.routes'));
 
+app.use(require('./routes/students.routes'));
+
+app.use(require('./routes/courses.routes'));
+
+app.use(require('./routes/survey.routes'));
 
 //-------------------- Start Server ------------------------------------
 app.listen(app.get('port'), () =>
