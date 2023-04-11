@@ -17,6 +17,7 @@ import { SurveyComponent } from './views/survey/survey.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { QRService } from './shared/services/qr.service';
 import { SuccessComponent } from './views/success/success.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { SuccessComponent } from './views/success/success.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [UserService,CourseService,QRService],
+  providers: [UserService,CourseService,QRService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
