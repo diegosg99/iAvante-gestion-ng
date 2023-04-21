@@ -13,7 +13,7 @@ router.get('/courses/name',(req,res) => {
     }
   })
   
-  router.get('/courses',(req,res) => {
+  router.route('/courses').get((req,res) => {
   try{
       let sql = `SELECT * FROM cursos;`;
       connection.query(sql, function(err, rows, fields) {

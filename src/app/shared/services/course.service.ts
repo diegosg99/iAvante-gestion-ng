@@ -12,7 +12,7 @@ import {parse, stringify} from 'flatted';
 export class CourseService {
 
     public courses:any;
-    private apiURL:string = 'http://127.0.0.1:3003/';
+    private apiURL:string = 'http://127.0.0.1:3003/api/v1/';
     httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
