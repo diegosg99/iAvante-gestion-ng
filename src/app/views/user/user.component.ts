@@ -1,5 +1,6 @@
 import { Component,EventEmitter,OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 import { User,UserDto } from 'src/app/shared/models/user.model';
 import { CourseService } from 'src/app/shared/services/course.service';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -24,8 +25,9 @@ export class UserComponent implements OnInit {
 
     constructor(
       private userService: UserService,
-      private route: ActivatedRoute,
+      public route: ActivatedRoute,
       public router: Router,
+      public location: Location,
       private courseService:CourseService
     ){
       this.dni = "";
@@ -66,7 +68,7 @@ export class UserComponent implements OnInit {
   }
   updateUser () { // TODO
     let user = this.userForm.value;
-    console.log(user);
+
     user.rights = true?1:0;
     this.userService.updateUser(user).subscribe();
     this.router.navigateByUrl('documentation/'+this.userForm.value.dni+"/"+this.selectedCourse)
