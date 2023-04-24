@@ -10,7 +10,7 @@ import { map,catchError } from 'rxjs/operators';
 export class UserService {
   
     public users:any;
-    private apiURL:string = 'http://127.0.0.1:3003/';
+    private apiURL:string = 'http://127.0.0.1:3003/api/v1/';
     httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -28,19 +28,19 @@ export class UserService {
       return this.httpService.get < User[] > (this.apiURL + 'students/');
     }
     getUser(dni:any): Observable < User[] > {
-      return this.httpService.get < User[] > (this.apiURL + 'student/data/'+dni);
+      return this.httpService.get < User[] > (this.apiURL + 'students/data/'+dni);
     }
     addUser(user: User): Observable < User > {
-        return this.httpService.post < User > (this.apiURL + 'student/', JSON.stringify(user), this.httpOptions)
+        return this.httpService.post < User > (this.apiURL + 'students/', JSON.stringify(user), this.httpOptions)
     }
     updateUser(user: any) {
-      return this.httpService.put < any > (this.apiURL + 'student/update',user);
+      return this.httpService.put < any > (this.apiURL + 'students/update',user);
     }
     getCourseDocumentation(courseCode:any|null) {
-      return this.httpService.get < any > (this.apiURL + 'course/documentation/'+courseCode)
+      return this.httpService.get < any > (this.apiURL + 'courses/documentation/'+courseCode)
     }
     getCourseRoom(courseCode:any|null) {
-      return this.httpService.get < any > (this.apiURL + 'course/room/'+courseCode)
+      return this.httpService.get < any > (this.apiURL + 'courses/room/'+courseCode)
     }
 
     uploadSurvey(survey: any) {

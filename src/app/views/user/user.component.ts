@@ -83,7 +83,7 @@ export class UserComponent implements OnInit {
     this.userSelected = true;
 
     user.subscribe((data:any) => {
-      let formUser = data.rows[0];
+      let formUser = data[0];
       this.dni = formUser.dni;
       this.userForm.setValue({
         'dni':formUser.dni,
