@@ -66,10 +66,11 @@ export class UserComponent implements OnInit {
       this.courses = data;
     });
   }
-  updateUser () { // TODO
+  updateUser (dni:string) { // TODO
     let user = this.userForm.value;
 
     user.rights = true?1:0;
+    user.oldDNI = dni;
     this.userService.updateUser(user).subscribe();
     this.router.navigateByUrl('documentation/'+this.userForm.value.dni+"/"+this.selectedCourse)
     

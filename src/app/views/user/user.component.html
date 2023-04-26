@@ -38,7 +38,7 @@
 
     </div>
 
-    <form id="studentForm" [formGroup]="userForm" (ngSubmit)="updateUser()" *ngIf="userSelected">
+    <form id="studentForm" [formGroup]="userForm" (ngSubmit)="updateUser(keyworddni.value)" *ngIf="userSelected">
     <hr class="hr hr-blurry" />
 
     <h4 class="w-75 mx-auto">Compruebe los siguientes datos</h4>
