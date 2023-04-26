@@ -10,7 +10,7 @@ import { map,catchError } from 'rxjs/operators';
 export class UserService {
   
     public users:any;
-    private apiURL:string = 'http://217.160.232.46:3003/api/v1/';
+    private apiURL:string = 'http://10.111.249.114:3003/api/v1/';
     httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
