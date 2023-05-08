@@ -44,7 +44,7 @@ export class UserService {
     }
 
     uploadSurvey(survey: any) {
-      return this.httpService.post < any > (this.apiURL + 'upload/survey',(survey));
+      return this.httpService.post < any > (this.apiURL + 'surveys/upload/survey',(survey));
     }
 
     errorHandler(error: {
