@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 import { QRService } from './shared/services/qr.service';
 import { SuccessComponent } from './views/success/success.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HomeComponent } from './views/home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     DocumentationComponent,
     SurveyComponent,
     PageNotFoundComponent,
-    SuccessComponent
+    SuccessComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -89,7 +89,7 @@
           </div>
         </div>
         <br>
-          <div class="row" *ngIf="this.router.url==='/'">
+          <div class="row" *ngIf="this.router.url==='/user'">
             <div class="col-lg-4 col-sm-0 col-xs-0"></div>
             <div class="col-lg-4 col-sm-4 col-xs-4">
               <button type="submit" ariaCurrentWhenActive="page"  class="col btn btn-primary" id="submitForm" [disabled]="!userForm.valid" (click)="updateUser(keyworddni.value)">Acceder al curso</button><!--[routerLink]="['/documentation',userForm.value.dni,selectCourse.value]" routerLinkActive="active"-->

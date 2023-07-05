@@ -5,10 +5,15 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 import { SuccessComponent } from './views/success/success.component';
 import { SurveyComponent } from './views/survey/survey.component';
 import { UserComponent } from './views/user/user.component';
+import { HomeComponent } from './views/home/home.component';
 const routes:Routes=[
   {
     path:'',
-    component: UserComponent
+    component: HomeComponent
+  },
+  { 
+    path: 'user',
+    component: UserComponent 
   },
   {
     path:'prev-survey',
@@ -28,11 +33,6 @@ const routes:Routes=[
   },
   { 
     path: '**',
-    component: PageNotFoundComponent 
-  }
-  ,
-  { 
-    path: '**/**',
     component: PageNotFoundComponent 
   }
 ];
