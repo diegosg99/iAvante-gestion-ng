@@ -8,6 +8,11 @@ Lista de TODO's para dejar la aplicación nike:
 - Poner cada parte de la página bonita y con lo que Armando diga
 - Hacer preguntas correctas en la encuesta de satisfacción y saber enlazar tras el curso. (O hacerlo en una página separada)
 
+Para iniciar la aplicacion:
+
+- Poner a andar el servidor con el comando npm run server-up
+- Para pasar la aplicacion a su versión de producción/despliege ejecutar ng build
+- Para mantener el servidor abierto constantemente hay que hacer un microservicio de windows (o el SO que se utilice) para que se ejecute       constantemente
 
 
 Para otras Apps: 

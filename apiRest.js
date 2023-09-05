@@ -48,6 +48,10 @@ app.get('/students/course/:id',(req,res) => {
   try{
       let data = req.params.id;
       let sql = `SELECT dni,name,surname FROM alumnos WHERE course = '`+data+`';`;
+
+    console.log(data);
+    console.log(sql);
+
       connection.query(sql, function(err, rows, fields) {
           if (err) throw err;
           res.status(200).send({rows});

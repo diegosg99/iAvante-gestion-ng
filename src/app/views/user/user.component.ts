@@ -31,7 +31,7 @@ export class UserComponent implements OnInit {
       this.courses = this.courseService.getCourses();
       this.userForm = new FormGroup({
         dni: new FormControl("",Validators.compose(
-          [ Validators.maxLength(9), Validators.minLength(9),Validators.pattern('[0-9]{8}[A-Z]{1}')]
+          [ Validators.maxLength(9), Validators.minLength(9),Validators.pattern('[0-9]{8}[A-Z]{1}|[A-Z]{1}[0-9]{8}')]
        )),
         name: new FormControl("",Validators.compose(
           [ Validators.maxLength(30), Validators.minLength(1)]
@@ -93,8 +93,10 @@ export class UserComponent implements OnInit {
     })
   }
   showCourseUsers(e:Event|any) {
-    this.selectedCourse = e.target.value
+    this.selectedCourse = e.target.value;
+    console.log(this.selectedCourse);
     this.courseService.getCourseUsers(e.target.value).subscribe((data: any)=> {
+      console.log(data);
         this.users = data.rows;
     });
   }
