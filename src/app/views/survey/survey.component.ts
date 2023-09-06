@@ -24,7 +24,6 @@ export class SurveyComponent {
     question2: new FormControl(90),
     question3: new FormControl(90),
     question4: new FormControl(),
-  
   })
   }
 
@@ -51,7 +50,7 @@ export class SurveyComponent {
       question3: survey.question3,
       question4: survey.question4
     });
-    console.log(fullSurvey)
+
     this.userService.uploadSurvey(fullSurvey).subscribe();
     
   }

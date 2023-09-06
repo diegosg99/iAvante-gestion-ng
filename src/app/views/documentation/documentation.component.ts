@@ -32,7 +32,7 @@ export class DocumentationComponent {
     this.dni = this.route.snapshot.paramMap.get('dni');
     this.course = this.route.snapshot.paramMap.get('course');
     this.userService.getCourseDocumentation(this.course).subscribe(url=>{
-      documentUrl = url[0].documentationUrl;
+      documentUrl = url.rows[0].documentationUrl;
       this.imgDocumentation += documentUrl;
     });
     
@@ -40,7 +40,7 @@ export class DocumentationComponent {
   getCourseRoom() {
     let courseCode = this.route.snapshot.params['course'];
     this.userService.getCourseRoom(courseCode).subscribe(item =>{
-        this.room = item[0].room}
+        this.room = item.rows[0].room}
         );
   }
 }

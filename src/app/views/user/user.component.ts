@@ -20,6 +20,7 @@ export class UserComponent implements OnInit {
   public dni:string;
   public selectedCourse:string = "";
   public userSelected:boolean = false;
+  public user:any;
   
   public userForm: FormGroup;
 
@@ -63,12 +64,13 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.courses.subscribe((data: any)=> {
-      this.courses = data;
-      console.log(data);
+      this.courses = data.rows;
     });
   }
   updateUser (dni:string) { // TODO
     let user = this.userForm.value;
+
+    console.log(user);
 
     user.rights = true?1:0;
     user.oldDNI = dni;
@@ -76,18 +78,24 @@ export class UserComponent implements OnInit {
     this.router.navigateByUrl('documentation/'+this.userForm.value.dni+"/"+this.selectedCourse)
     
   }
-  showUser(dni:string) {
+  showUser(dni:Event|any) {
 
-    if (dni.length!==9){
-      this.userSelected = false;
-      return
-    };
+    // if (dni.length!==9){
+    //   this.userSelected = false;
+    //   return
+    // };
 
-    let user = this.userService.getUser(dni);
+    console.log(dni.target.value);
+
+    
+
+    let user = this.userService.getUser(dni.target.value);
+
     this.userSelected = true;
 
     user.subscribe((data:any) => {
-      let formUser = data[0];
+
+      let formUser = data.rows[0];
       this.dni = formUser.dni;
       this.userForm.setValue({
         'dni':formUser.dni,
@@ -103,8 +111,8 @@ export class UserComponent implements OnInit {
   }
   showCourseUsers(e:Event|any) {
     this.selectedCourse = e.target.value
-    // this.courseService.getCourseUsers(e.target.value).subscribe((data: any)=> {
-    //     this.users = data.rows;
-    // });
+    this.courseService.getCourseUsers(e.target.value).subscribe((data: any)=> {
+        this.users = data.rows;
+    });
   }
 }

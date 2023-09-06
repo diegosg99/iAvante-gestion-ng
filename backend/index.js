@@ -30,21 +30,10 @@ const connection = mysql.createConnection({
   password : '',
   database : 'asistencia'
 });
-            //----------------------BD Admin
-const adminDB = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'iavante'
-});
 
 connection.connect(err => {
   err ?console.error('error connecting: ' + err.stack)
   :console.log('connected as id ' + connection.threadId);
-});
-adminDB.connect(err => {
-  err ?console.error('error connecting: ' + err.stack)
-      :console.log('connected as id ' + connection.threadId);
 });
 
 //--------------------------------------- MIDDLEWARES --------------------------------------
@@ -63,13 +52,192 @@ return result;
 
 //--------------------------------------- ROUTES -------------------------------------------
 
-app.use(require('./routes/admins.routes'));
+//-------------------------------------- COURSES -------------------------------------------
 
-app.use(require('./routes/students.routes'));
+app.get('/courses/name',(req,res) => {
+  try{
+      let sql = `SELECT code,name FROM cursos;`;
+      connection.query(sql, function(err, rows, fields) {
+          if (err) throw err;
+          res.status(200).send({rows});
+          });
+  }catch(error){
+      res.status(400).send({msg:"Error"});
+  }
+})
 
-app.use(require('./routes/courses.routes'));
+app.route('/courses').get((req,res) => {
+try{
+    let sql = `SELECT * FROM cursos;`;
+    connection.query(sql, function(err, rows, fields) {
+        if (err) throw err;
+        res.status(200).send({rows});
+        });
+}catch(error){
+    res.status(400).send({msg:"Error"});
+}
+})
 
-app.use(require('./routes/survey.routes'));
+app.get('/course/documentation/:courseCode',(req,res) => {
+let courseCode = req.params.courseCode;
+try{
+    let sql = `SELECT documentationUrl FROM cursos WHERE code = '${courseCode}';`;
+    connection.query(sql, function(err, rows, fields) {
+        if (err) throw err;
+        res.status(200).send({rows});
+        });
+}catch(error){
+    res.status(400).send({msg:"Error"});
+}
+})
+
+app.get('/course/room/:courseCode',(req,res) => {
+let courseCode = req.params.courseCode;
+try{
+    let sql = `SELECT room FROM cursos WHERE code = '${courseCode}';`;
+    connection.query(sql, function(err, rows, fields) {
+        if (err) throw err;
+        res.status(200).send({rows});
+        });
+}catch(error){
+    res.status(400).send({msg:"Error"});
+}
+})
+
+app.get('/course/:courseCode',(req,res) => {
+let courseCode = req.params.courseCode;
+try{
+    let sql = `SELECT * FROM cursos WHERE code = '${courseCode}';`;
+    connection.query(sql, function(err, rows, fields) {
+        if (err) throw err;
+        res.status(200).send(rows[0]);
+        });
+}catch(error){
+    res.status(400).send({msg:"Error"});
+}
+})
+
+app.post('/courses/uploadExcel',(req,res) => {
+try{
+  let data = req.body;
+
+  data.forEach(item =>{
+    let sql = `INSERT IGNORE INTO cursos VALUES ('${item.id}','${item.code}','${item.name}','${item.tutor}','${item.room}','${item.day}','${item.documentation}')`;
+
+  connection.query(sql, function(err, rows, fields) {
+      if (err) throw err;
+      res.status(200).send("exito");
+      });
+  })
+}catch(error) {
+  res.status(400).send(req);
+}
+})
+
+// ------------------------------------------------- STUDENTS -------------------------------------------
+
+app.put('/student/update',(req,res) => {
+  try{
+    let data = req.body;
+  
+    let timestamp = moment().unix();
+  
+    let sql = `UPDATE alumnos 
+                  SET dni='${data.dni}',
+                  name='${data.name}',
+                  surname='${data.surname}',
+                  email='${data.email}',
+                  phone='${data.phone}',
+                  details='${data.details}',
+                  rights='${data.rights}',
+                  entry='${moment.unix(timestamp).format("YYYY-MM-DD HH:mm:ss")}'
+                  WHERE dni = '${data.dni}';`;
+  
+    connection.query(sql, function(err, rows, fields) {
+        if (err) throw err;
+        res.status(200).send(data);
+        });
+  }catch(error) {
+    res.status(400).send(req);
+  }
+  })
+
+app.get('/students/course/:id',(req,res) => {
+try{
+  let data = req.params.id;
+  let sql = `SELECT dni,name,surname FROM alumnos WHERE course = '`+data+`';`;
+  connection.query(sql, function(err, rows, fields) {
+      if (err) throw err;
+      res.status(200).send({rows});
+      });
+}catch(error){
+  res.status(400).send({msg:"Error"});
+}
+})
+
+app.get('/students',(req,res) => {
+try{
+  let sql = `SELECT * FROM alumnos;`;
+  connection.query(sql, function(err, rows, fields) {
+      if (err) throw err;
+      res.status(200).send({rows});
+      });
+}catch(error){
+  res.status(400).send({msg:"Error"});
+}
+})
+
+app.get('/student/data/:id',(req,res) => {
+try{
+  let data = req.params.id;
+  let sql = `SELECT * FROM alumnos WHERE dni = '`+data+`';`;
+  connection.query(sql, function(err, rows, fields) {
+      if (err) throw err;
+      res.status(200).send({rows});
+      });
+}catch(error){
+  res.status(400).send({msg:"Error"});
+}
+})
+
+app.post('/students/uploadExcel',(req,res) => {
+  try{
+    let data = req.body;
+  
+    data.forEach(item =>{
+      let sql = `INSERT IGNORE INTO alumnos VALUES ('${item.dni}','${item.name}','${item.surname}','${item.email}',${item.phone},'${item.details}','${item.course}','${item.rights}','${item.entry}','${item.exit}')`;
+  
+    connection.query(sql, function(err, rows, fields) {
+        if (err) throw err;
+        //res.status(200).send("exito");
+        });
+    })
+  }catch(error) {
+    res.status(400).send(req);
+  }
+  })
+
+// --------------------------------------------- SURVEYS ----------------------------------------------
+
+app.post('/upload/survey', (req,res) => {
+  let item = req.body;
+
+  let sumglobal = (item.question1 + item.question2 + item.question3);
+  let global = (sumglobal/3).toFixed(2);
+
+  let sql = `INSERT INTO valoracion VALUES ('${item.id}','${item.course}','${item.student}',${item.question1},${item.question2},${item.question3},'${item.question4}', ${global})`;
+
+  connection.query(sql, function(err, rows, fields) {
+    if (err) throw err;
+    res.status(200).send(sql);
+    });
+})
+
+// app.use(require('./routes/students.routes'));
+
+// app.use(require('./routes/courses.routes'));
+
+// app.use(require('./routes/survey.routes'));
 
 //-------------------- Start Server ------------------------------------
 app.listen(app.get('port'), () =>

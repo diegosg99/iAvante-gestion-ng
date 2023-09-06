@@ -11,7 +11,7 @@
               </select>
         </div>
     </div>
-    <!-- <div class="section">
+    <div class="section">
         <h4 class="w-75 mx-auto">Selecciona un alumno:</h4>
         <div class="form-group w-75 mx-auto">
                 <select class="form-control" id="select-alumno" #selectAlumno (change)="showUser($event)">
@@ -21,24 +21,24 @@
                   {{user.name + " " + user.surname}}</option>
                 </select>
           </div>
-    </div> -->
+    </div>
 
-    <div class="form-group w-75 mx-auto">
+    <!-- <div class="form-group w-75 mx-auto">
       <label for="userDni">DNI:</label>
       <input type="text" class="form-control" id="keyDni" placeholder="DNI" #keyworddni>
       <small class="text-danger" *ngIf="userForm.get('dni')?.invalid">Campo inválido.</small>
-      <!-- <small class="text-danger" *ngIf="userForm.get('dni')?.hasError('required')">Campo vacío.</small> -->
-    </div>
-    <div class="row">
+      <small class="text-danger" *ngIf="userForm.get('dni')?.hasError('required')">Campo vacío.</small>
+    </div> -->
+    <!-- <div class="row">
       <div class="col-lg-4 col-sm-0 col-xs-0"></div>
       <div class="col-lg-4 col-sm-4 col-xs-4">
-        <button type="submit" ariaCurrentWhenActive="page"  class="col btn btn-primary" id="submitForm" [disabled]="!userForm.valid" (click)="showUser(keyworddni.value)">Cargar datos</button><!--[routerLink]="['/documentation',userForm.value.dni,selectCourse.value]" routerLinkActive="active"-->
+        <button type="submit" ariaCurrentWhenActive="page"  class="col btn btn-primary" id="submitForm" [disabled]="!userForm.valid" (click)="showUser(selectAlumno.value)">Cargar datos</button>[routerLink]="['/documentation',userForm.value.dni,selectCourse.value]" routerLinkActive="active"
       </div>  
       <div class="col-lg-4 col-sm-0 col-xs-0"></div>
 
-    </div>
+    </div> -->
 
-    <form id="studentForm" [formGroup]="userForm" (ngSubmit)="updateUser(keyworddni.value)" *ngIf="userSelected">
+    <form id="studentForm" [formGroup]="userForm" (ngSubmit)="updateUser(selectAlumno.value)" *ngIf="userSelected">
     <hr class="hr hr-blurry" />
 
     <h4 class="w-75 mx-auto">Compruebe los siguientes datos</h4>
@@ -92,7 +92,7 @@
           <div class="row" *ngIf="this.router.url==='/user'">
             <div class="col-lg-4 col-sm-0 col-xs-0"></div>
             <div class="col-lg-4 col-sm-4 col-xs-4">
-              <button type="submit" ariaCurrentWhenActive="page"  class="col btn btn-primary" id="submitForm" [disabled]="!userForm.valid" (click)="updateUser(keyworddni.value)">Acceder al curso</button><!--[routerLink]="['/documentation',userForm.value.dni,selectCourse.value]" routerLinkActive="active"-->
+              <button type="submit" ariaCurrentWhenActive="page"  class="col btn btn-primary" id="submitForm" [disabled]="!userForm.valid" (click)="updateUser(selectAlumno.value)">Acceder al curso</button><!--[routerLink]="['/documentation',userForm.value.dni,selectCourse.value]" routerLinkActive="active"-->
             </div>  
             <div class="col-lg-4 col-sm-4 col-xs-4"></div>
           </div>
