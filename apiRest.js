@@ -111,6 +111,19 @@ app.get('/course/documentation/:courseCode',(req,res) => {
   }
 })
 
+app.get('/course/room/:courseCode',(req,res) => {
+  let courseCode = req.params.courseCode;
+  try{
+      let sql = `SELECT room FROM cursos WHERE code = '${courseCode}';`;
+      connection.query(sql, function(err, rows, fields) {
+          if (err) throw err;
+          res.status(200).send({rows});
+          });
+  }catch(error){
+      res.status(400).send({msg:"Error"});
+  }
+})
+
 app.put('/student/update',(req,res) => {
   try{
     let data = req.body;

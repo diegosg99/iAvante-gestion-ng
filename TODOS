@@ -15,6 +15,8 @@ Para iniciar la aplicacion:
 - Para mantener el servidor abierto constantemente hay que hacer un microservicio de windows (o el SO que se utilice) para que se ejecute       constantemente
 
 
+- Para mantener los datos, debemos subir los datos ajustados a las dos tablas que necesita la aplicación, alumnos, con los respectivos datos que aparecen en el formulario, y los cursos, que deben tener la informacion sobre el curso incluyendo el aula en el que se realiza y la documentación en un URL Para poderlo hacer accesible por captcha.(alumnos: dni,name,surname,email,phone,details,course,rights,entry,exit_date) (cursos: id, codigo,nombre,room,tutor,day,documentation)
+
 Para otras Apps: 
 
 En el admin panel estará:

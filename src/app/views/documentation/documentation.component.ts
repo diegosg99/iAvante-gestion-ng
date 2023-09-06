@@ -38,7 +38,9 @@ export class DocumentationComponent {
     
   }
   getCourseRoom() {
+
     let courseCode = this.route.snapshot.params['course'];
+
     this.userService.getCourseRoom(courseCode).subscribe(item =>{
         this.room = item.rows[0].room}
         );
